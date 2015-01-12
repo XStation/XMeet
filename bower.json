@@ -11,6 +11,17 @@
   ],
   "dependencies": {
     "jquery": "1.9.*",
-    "jquery-cookie": "~1.4.1"
+    "requirejs": "~2.1.15",
+    "require-handlebars-plugin": "~0.11.2",
+    "handlebars": "~2.0.0",
+    "sockjs-client": "~0.3.4",
+    "json3": "~3.3.2",
+    "requirejs-hbs": "~0.1.1",
+    "text": "~2.0.13"
+  },
+  "overrides": {
+    "jquery": {
+      "main": "jquery.js"
+    }
   }
 }
