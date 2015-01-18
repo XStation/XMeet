@@ -1,0 +1,48 @@
+@charset "UTF-8";
+// Core variables and mixins
+//
+@import "custom-variables";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+// Reset and dependencies
+@import "bootstrap/normalize";//网页元素初始化
+@import "bootstrap/print";
+@import "bootstrap/glyphicons";//字体图标
+// Core CSS
+@import "bootstrap/scaffolding";//脚手架
+@import "bootstrap/type";//字体与排版
+@import "bootstrap/code";//代码内联代码and代码块
+@import "bootstrap/grid";//栅格系统
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+// Components
+@import "bootstrap/component-animations";
+@import "bootstrap/dropdowns";
+@import "bootstrap/button-groups";
+@import "bootstrap/input-groups";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
+@import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
+@import "bootstrap/pager";
+@import "bootstrap/labels";
+@import "bootstrap/badges";
+@import "bootstrap/jumbotron";
+@import "bootstrap/thumbnails";
+@import "bootstrap/alerts";
+@import "bootstrap/progress-bars";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/panels";
+@import "bootstrap/responsive-embed";
+@import "bootstrap/wells";
+@import "bootstrap/close";
+// Components w/ JavaScript
+@import "bootstrap/modals";
+@import "bootstrap/tooltip";
+@import "bootstrap/popovers";
+@import "bootstrap/carousel";
+// Utility classes
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";

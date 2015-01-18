@@ -1,0 +1,10 @@
+ 
+.footer{ 
+  background-color:$theme-foot-base-color; 
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  .container-fluid{
+    text-align:center;
+  }
+}

@@ -1,0 +1,35 @@
+@mixin float_left {
+     display: block;
+     float: left;
+}
+
+.body{ 
+	overflow: hidden;
+	.container-wrap{
+		height: 100%;
+		width: 100%;
+		.page-sidebar{
+			width: 210px;
+			overflow-y:auto; 
+			position:relative;
+			z-index: 20;
+			@include float_left;
+		}
+		.page-content{
+			width: 100%;
+			overflow-y:auto;
+			overflow-x: hidden;
+			position: relative;
+			z-index: 10; 
+			@include float_left;
+			margin-left: -220px;
+			padding-left:220px; 
+		}
+		.menu-siderline{
+			@include float_left;
+			overflow-y:hidden; 
+			width: 5px;
+			border-left: 1px solid #333;
+		}
+	}
+}

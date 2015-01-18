@@ -1,0 +1,9 @@
+
+.header{
+  background-color: $theme-head-base-color;
+  @include border-radius(0px);
+  @include background-image(linear-gradient(lighten($theme-head-base-color, 40%),lighten($theme-head-base-color, 20%),darken($theme-head-base-color, 80%),$theme-head-base-color));
+  .container-fluid{
+    
+  }
+}

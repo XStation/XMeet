@@ -1,0 +1,23 @@
+.bs-docs-sidebar{
+	li{
+		a{
+			font-size: 14px;
+			background-color: transparent;
+			outline: none; 
+		}
+		a:hover,a:focus{
+			outline: none;
+			color: #e47911;
+			font-size: 15px; 
+			background-color: transparent; 
+		}
+	}
+	ul > .readOnly{
+		> a, > a:hover,> a:focus{
+			outline: none;
+			color: #ccc;
+			font-size: 14px; 
+			background-color: transparent; 
+		}
+	}
+}

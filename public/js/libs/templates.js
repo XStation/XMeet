@@ -1,5 +1,18 @@
 this["Chat"] = this["Chat"] || {};
 this["Chat"]["templates"] = this["Chat"]["templates"] || {};
 this["Chat"]["templates"]["chat"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"chat-wrap\">\r\n      <div class=\"chat-main hide\">\r\n        <div class=\"chat-head clearfix\">\r\n          <h3 class=\"chat-title float-left\">GGG聊天室</h3>\r\n          <div class=\"chat-icon float-right\">\r\n            <a class=\"fa fa-times icon-button close-chat\"></a>\r\n          </div>\r\n        </div>\r\n        <div class=\"chat-body\"> \r\n        </div>\r\n        <div class=\"chat-send-box\"  >\r\n          <div class=\"send-box-text\">\r\n            <textarea class=\"chat-text\" placeholder=\"按回车发送消息\"></textarea>\r\n              <a class=\"send-box-icon btn \">发送</a> \r\n          </div> \r\n        </div>\r\n      </div>\r\n      <div class=\"chat-toolbar clearfix\">\r\n        <div class=\"toolbar-bg\"></div>\r\n        <p class=\"toolbar_cont clearfix\">        \r\n          <span class=\"toolbar_icon float-left\"></span>        \r\n          <em node-type=\"miniContent\" class=\"toolbar_font float-left\">进入聊天室</em>   \r\n        </p>\r\n      </div>\r\n    </div> ";
-  },"useData":true});
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "<div class=\"chat-wrap chat-collapse\">\r\n  <div class=\"chat-expand hide\">\r\n    <div class=\"chat-head\">\r\n      <span class=\"title chat-title\">群聊("
+    + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
+    + "人)</span>\r\n      <i class=\"fa fa-close pull-right close-chat\"></i>\r\n    </div>\r\n    <div class=\"chat-main\"> \r\n    </div>\r\n    <div class=\"chat-foot\">\r\n      <textarea class=\"chat-text\" ></textarea>\r\n      <a href=\"#\" class=\"button button-raised button-pill button-inverse button-small pull-right chat-send\">发送</a> \r\n    </div>\r\n  </div>\r\n  <div class=\"chat-collapse-tools\">\r\n    <i class=\"fa fa-wechat\"></i>\r\n    加入聊天室\r\n  </div>\r\n</div>";
+},"useData":true});
+this["Chat"]["templates"]["msg"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "<div class=\"chat-item\">\r\n  <div class=\"chat-profile\">"
+    + escapeExpression(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"from","hash":{},"data":data}) : helper)))
+    + "<span class=\"pull-right\">"
+    + escapeExpression(((helper = (helper = helpers.send_time || (depth0 != null ? depth0.send_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"send_time","hash":{},"data":data}) : helper)))
+    + "</span></div> \r\n  <div class=\"chat-msg\">"
+    + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
+    + "\r\n  </div>\r\n</div>";
+},"useData":true});

@@ -1,25 +1,18 @@
-<div class="chat-wrap">
-      <div class="chat-main hide">
-        <div class="chat-head clearfix">
-          <h3 class="chat-title float-left">GGG聊天室</h3>
-          <div class="chat-icon float-right">
-            <a class="fa fa-times icon-button close-chat"></a>
-          </div>
-        </div>
-        <div class="chat-body"> 
-        </div>
-        <div class="chat-send-box"  >
-          <div class="send-box-text">
-            <textarea class="chat-text" placeholder="按回车发送消息"></textarea>
-              <a class="send-box-icon btn ">发送</a> 
-          </div> 
-        </div>
-      </div>
-      <div class="chat-toolbar clearfix">
-        <div class="toolbar-bg"></div>
-        <p class="toolbar_cont clearfix">        
-          <span class="toolbar_icon float-left"></span>        
-          <em node-type="miniContent" class="toolbar_font float-left">进入聊天室</em>   
-        </p>
-      </div>
-    </div> 
+<div class="chat-wrap chat-collapse">
+  <div class="chat-expand hide">
+    <div class="chat-head">
+      <span class="title chat-title">群聊({{payload}}人)</span>
+      <i class="fa fa-close pull-right close-chat"></i>
+    </div>
+    <div class="chat-main"> 
+    </div>
+    <div class="chat-foot">
+      <textarea class="chat-text" ></textarea>
+      <a href="#" class="button button-raised button-pill button-inverse button-small pull-right chat-send">发送</a> 
+    </div>
+  </div>
+  <div class="chat-collapse-tools">
+    <i class="fa fa-wechat"></i>
+    加入聊天室
+  </div>
+</div>

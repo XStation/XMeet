@@ -1,7 +1,12 @@
 {
-  "name": "socket",
+  "name": "Doc",
   "version": "0.0.0",
+  "authors": [
+    "fan <fanwh1@lenovo.com>"
+  ],
+  "description": "The development of JS specification",
   "license": "MIT",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -14,12 +19,28 @@
     "requirejs": "~2.1.15",
     "require-handlebars-plugin": "~0.11.2",
     "handlebars": "~2.0.0",
-    "sockjs-client": "~0.3.4",
     "json3": "~3.3.2",
     "requirejs-hbs": "~0.1.1",
-    "text": "~2.0.13"
+    "text": "~2.0.13",
+    "moment": "~2.9.0",
+    "bootstrap": "~3.3.1",
+    "requirejs": "~2.1.15",
+    "require-css": "~0.1.8"
   },
   "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff"
+      ]
+    },
+    "requirejs": {
+      "main": "require.js"
+    },
     "jquery": {
       "main": "jquery.js"
     }

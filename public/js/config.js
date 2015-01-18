@@ -1,35 +1,95 @@
-requirejs.config({ 
-    baseUrl: 'http://localhost:3000/js', 
-    waitSeconds:0,
-    paths: {
-        'jquery': 'http://localhost:3000/js/libs/jquery',
-        'handlebars':'http://localhost:3000/js/libs/handlebars',
-        'text':'http://localhost:3000/js/libs/text',
-        'sockjs':'http://localhost:3000/js/libs/sockjs',
-        'json3':'http://localhost:3000/js/libs/json3',
-        'templates':'http://localhost:3000/js/libs/templates'
+(function(){
+        window.globalConfig=window.globalConfig||{
+        serviceUrl:"/", 
+        libPath:'/js/libs/',
+        appPath:'/js/app/',
+        extLibPath:'/js/extlibs/',
+        ctlPath:'controllers/',
+        tplPath:'/js/app/tpl/',
+        set:function(k,v){
+            this[k]=v;
+        },
+        get:function(k){
+            return this[k]?this[k]:"";
+        }
+    };
+})(window);
+requirejs.config({
+    baseUrl:'/js/app/',
+    paths:{
+        'jquery':globalConfig.libPath+'jquery',
+        'angular':globalConfig.libPath+'angular',
+        'angular-route':globalConfig.libPath+'angular-ui-router',
+        'angular-bootstrap':globalConfig.libPath+'ui-bootstrap-tpls', 
+        'angular-translate':globalConfig.libPath+'angular-translate',
+        'angular-grid':globalConfig.libPath+'ui-grid',
+        'angular-dragdrop':globalConfig.libPath+'angular-dragdrop',
+        'jquery-ui':globalConfig.libPath+'jquery-ui',
+        'buttons':globalConfig.extLibPath+'buttons',
+        'moment':globalConfig.libPath+'moment', 
+        'bootstrap':globalConfig.libPath+'bootstrap',
+        'angular-formly':globalConfig.libPath+'formly.min',
+        'angular-formly-templates':globalConfig.libPath+'angular-formly-templates-bootstrap.min',
+        'crypto':globalConfig.extLibPath+'2.0.0-crypto-md5',
     },
     shim:{
-        handlebars: {
-            exports: 'Handlebars'
+        'angular-formly-templates':{
+            deps:['angular-formly'],
+            exports:'Angular'
         },
-        templates:{
-            deps: ['handlebars'],
-            exports: 'Handlebars'
+        'angular-formly':{
+            deps:['angular'],
+            exports:'Angular'
+        },
+        'moment':{ 
+            exports:'moment'
+        }, 
+        'bootstrap':{
+            deps:['jquery','moment'],
+            exports:'Jquery'
+        },
+        'jquery-ui':{
+            deps:['jquery'],
+            exports:'Jquery'
+        },
+        'jquery':{
+            exports:'Jquery'
+        },
+        'buttons':{
+            deps:['jquery'],
+            exports:'Jquery'
+        },
+        'angular':{
+            exports:'Angular'
+        },
+        'angular-dragdrop':{
+            deps:['angular','jquery-ui'],
+            exports:'Angular'
+        },
+        'angular-bootstrap':{
+            deps:['angular','angular-dragdrop','buttons'],
+            exports:'Angular'
+        }, 
+        'angular-route':{
+            deps:['angular'],
+            exports:'Angular'
+        },
+        'angular-grid':{
+            deps:['angular','css!/js/libs/ui-grid'],
+            exports:'Angular'
+        }, 
+        'angular-translate':{
+            deps:['angular'],
+            exports:'Angular'
         }
     },
-    packages: [{
-        name: 'hbs',
-        location: 'http://localhost:3000/js/libs',
-        main: 'hbs'
-    }],
-    hbs: {
-        templateExtension: ".hbs",
-        compilerPath: "http://localhost:3000/js/libs"
+    map: {
+        '*': {
+              'css': globalConfig.libPath+'/css.js' 
+        } 
     },
-    urlArgs: "bust=1" //+  (new Date()).getTime()
+    urlArgs: "bust=1"//"bust="+(new Date()).getTime() //"bust=1"
+})
+require(['app'], function(app) { 
+    angular.bootstrap(document, ['app']);
 });
-
-require(['app/app'], function() {
-    console.log("!!!!!!");
-}); 
