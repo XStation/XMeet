@@ -1,5 +1,7 @@
 define(["require","jquery","simpleSocket",'handlebars','json3'], 
     function(require,$,webSocket,Handlebars) {
+        this["member_count"] = this["member_count"] || 0;
+        this["pid"] = this["pid"] || 0;
         this["Chat"] = this["Chat"] || {};
         this["Chat"]["templates"] = this["Chat"]["templates"] || {};
         this["Chat"]["templates"]["chat"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -53,10 +55,16 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             switch(message.type)
             {
             case 'member_count':
-              _renderChat(message);
+              _renderCount(message);
+              break;
+			case 'self':
+              _renderSelfInfo(message);
               break;
             case 'join':
               _renderJoin(message);
+              break;
+			case 'leave':
+              _renderLeave(message);
               break;
             case 'normal':
               _renderMessage(message)
@@ -65,14 +73,26 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
               "";
             }
         }
-        function _renderChat(message){ 
-            $('.chat-title').html("群聊("+message.payload+"人)");
-        }   
+		function _renderSelfInfo(message){
+            this["pid"] = message.payload;
+        }
+        function _renderCount(message){ 
+        	this["member_count"] = message.payload;
+            $('.chat-title').html("群聊("+this["member_count"]+"人)");
+        }
         function _renderJoin(message){
-            
-        }  
+			if( this["pid"] == message.from ){//自己join的消息不需要增加人数
+			}else{
+        		this["member_count"] += 1;
+            	$('.chat-title').html("群聊("+this["member_count"]+"人)");
+			}
+        }
+        function _renderLeave(message){
+        	this["member_count"] -= 1;
+            $('.chat-title').html("群聊("+this["member_count"]+"人)");
+        }
         function _renderMessage(message){
             $('.chat-main').append(Chat.templates.msg(message)); 
-        }  
+        }
     }
 );
