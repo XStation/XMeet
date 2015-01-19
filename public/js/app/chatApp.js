@@ -43,11 +43,12 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
                 });
                 $(".chat-send").on('click',function(e){
                     ws.send($(".chat-text").val()); 
+        		   	$('.chat-text').select();
                 }); 
 				$('.chat-text').keyup(function (e) {
         		   if(e.keyCode == 13 && ($('.chat-text').val()!='')){ // Enter is pressed
         		       ws.send($('.chat-text').val());
-        		   	   $('.chat-text').val('');
+        		   	   $('.chat-text').select();
 					}
 				});
         });

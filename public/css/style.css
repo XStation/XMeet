@@ -10888,7 +10888,7 @@ button.close {
   background-color: #fcf8e3;
   border-color: #faebcc;
   color: #8a6d3b;
-  margin: 3px 0 10px;
+  margin: 3px 0 1px;
 }
 .chat-expand .chat-main .chat-item .chat-profile {
   display: inline-block;
