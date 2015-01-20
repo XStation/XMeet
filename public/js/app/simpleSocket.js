@@ -2,14 +2,16 @@ define(["crypto"], function() {
 
     var socket={
     	supports:_checkSupports(),
-    	wsUrl:'ws://121.42.145.18:8080/xgate/websocket?xnest=thisisaname',
+    	wsUrl:'ws://121.42.145.18:8080/xgate/websocket/',
     	customMark:'',
     	init:_initSocket
     };
 
-    if(globalConfig&&globalConfig.wsUrl){
-        socket['wsUrl']=globalConfig.wsUrl+"?xnest="+Crypto.MD5(globalConfig.linkKey)
-    }  
+    if(globalConfig&&globalConfig.linkKey){
+        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+globalConfig.linkKey)+"?nickname=深潜运动员";
+    }else{
+        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+window.location.pathname)+"?nickname=深潜运动员";
+	}
     return socket.init;
     function _checkSupports(){
     	if ("WebSocket" in window) {
