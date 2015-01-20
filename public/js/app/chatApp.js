@@ -1,5 +1,6 @@
 define(["require","jquery","simpleSocket",'handlebars','json3'], 
     function(require,$,webSocket,Handlebars) {
+        this["members"] = this["members"] || {};
         this["member_count"] = this["member_count"] || 0;
         this["pid"] = this["pid"] || 0;
         this["Chat"] = this["Chat"] || {};
@@ -58,6 +59,9 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             case 'member_count':
               _renderCount(message);
               break;
+            case 'members':
+              _renderMembers(message);
+              break;
 			case 'self':
               _renderSelfInfo(message);
               break;
@@ -74,6 +78,9 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
               "";
             }
         }
+		function _renderMembers(message){
+			this["members"] = message.payload;
+		}
 		function _renderSelfInfo(message){
             this["pid"] = message.payload;
         }
