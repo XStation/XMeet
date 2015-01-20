@@ -60,16 +60,18 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
               _renderCount(message);
               break;
             case 'members':
-              _renderMembers(message);
+              _initMembers(message);
               break;
 			case 'self':
-              _renderSelfInfo(message);
+              _initSelfInfo(message);
               break;
             case 'join':
               _renderJoin(message);
+			  _joinMember(message);
               break;
 			case 'leave':
               _renderLeave(message);
+			  _leaveMember(message);
               break;
             case 'normal':
               _renderMessage(message)
@@ -78,10 +80,17 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
               "";
             }
         }
-		function _renderMembers(message){
+		function _initMembers(message){
 			this["members"] = message.payload;
 		}
-		function _renderSelfInfo(message){
+		function _joinMember(message){
+			this["members"].push({"pid":message.from, "nickname":message.payload});
+		}
+		function _leaveMember(message){
+			console.log(this['members']);
+			//need to do ;
+		}
+		function _initSelfInfo(message){
             this["pid"] = message.payload;
         }
         function _renderCount(message){ 
