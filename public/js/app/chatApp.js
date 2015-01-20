@@ -113,6 +113,13 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             $('.chat-title').html("群聊("+this["member_count"]+"人)");
         }
         function _renderMessage(message){
+			var nickname = "匿名";
+			$.each(this["members"], function(k, v){
+				if(v.pid == message.from){
+					nickname= v.nickname;
+				}
+			});
+			message.from = nickname+message.from;
             $('.chat-main').append(Chat.templates.msg(message)); 
         }
     }
