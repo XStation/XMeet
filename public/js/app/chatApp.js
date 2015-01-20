@@ -44,12 +44,16 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
                 });
                 $(".chat-send").on('click',function(e){
                     ws.send($(".chat-text").val()); 
-        		   	$('.chat-text').select();
+        		   	$('.chat-text').val("");
                 }); 
 				$('.chat-text').keyup(function (e) {
-        		   if(e.keyCode == 13 && ($('.chat-text').val()!='')){ // Enter is pressed
+        		    if(e.keyCode == 13 && e.ctrlKey){ // Ctrl+Enter is pressed
         		       ws.send($('.chat-text').val());
-        		   	   $('.chat-text').select();
+        		   	   $('.chat-text').val("");
+					}
+					if(e.altKey && e.keyCode==83){ // Alt+S is pressed
+        		       ws.send($('.chat-text').val());
+        		   	   $('.chat-text').val("");
 					}
 				});
         });
