@@ -1,4 +1,4 @@
-**config your HTML page like this:  
+Config your HTML page like this:  
 &lt;!DOCTYPE html&gt;  
 &lt;html&gt;  
   &lt;head&gt;  
