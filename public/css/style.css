@@ -10843,29 +10843,12 @@ button.close {
   content: "";
 }
 
-.chat-wrap {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  margin: 1px;
-  z-index: 99999;
-}
-
-.chat-expand {
-  width: 650px;
-  height: 600px;
-  border: 1px solid #666666;
-  color: #fff;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-}
-.chat-expand .chat-head {
-  padding: 10px;
-  height: 40px;
+.chat-head {
+  padding: 0px;
+  height: 20px;
   text-align: center;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2NjY2NiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzY3Njc2NyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
   background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #666666), color-stop(100%, #676767));
@@ -10873,17 +10856,18 @@ button.close {
   background-image: -webkit-linear-gradient(#666666, #676767);
   background-image: linear-gradient(#666666, #676767);
 }
-.chat-expand .chat-head i {
+.chat-head i {
   font-size: 18px;
   cursor: pointer;
 }
-.chat-expand .chat-main {
-  height: 508px;
+
+.chat-main {
+  height: 503px;
   background-color: #eee;
   color: #000;
   overflow: auto;
 }
-.chat-expand .chat-main .chat-item {
+.chat-main .chat-item {
   width: 100%;
   word-wrap: break-word;
   background-color: #fcf8e3;
@@ -10891,18 +10875,19 @@ button.close {
   color: #8a6d3b;
   margin: 3px 0 10px;
 }
-.chat-expand .chat-main .chat-item .chat-profile {
+.chat-main .chat-item .chat-profile {
   display: inline-block;
   padding: 0px 15px;
   width: 100%;
 }
-.chat-expand .chat-main .chat-item .chat-msg {
+.chat-main .chat-item .chat-msg {
   padding: 15px 25px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-.chat-expand .chat-foot {
+
+.chat-foot {
   height: 50px;
   border-top: 1px solid #666666;
   padding: 10px;
@@ -10913,30 +10898,10 @@ button.close {
   background-image: -webkit-linear-gradient(#ededed, #ededed);
   background-image: linear-gradient(#ededed, #ededed);
 }
-.chat-expand .chat-foot textarea {
+.chat-foot textarea {
   height: 35px;
   width: 500px;
   color: #000;
-}
-
-.chat-collapse-tools {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMzAlIiBzdG9wLWNvbG9yPSIjZWVlZWVlIi8+PHN0b3Agb2Zmc2V0PSI3MCUiIHN0b3AtY29sb3I9IiNlZWVlZWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZGRkZGQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
-  background-size: 100%;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(30%, #eeeeee), color-stop(70%, #eeeeee), color-stop(100%, #dddddd));
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee 30%, #eeeeee 70%, #dddddd);
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee 30%, #eeeeee 70%, #dddddd);
-  background-image: linear-gradient(#ffffff, #eeeeee 30%, #eeeeee 70%, #dddddd);
-  -webkit-box-shadow: rgba(0, 0, 255, 0.4) 0 0 25px, rgba(0, 128, 0, 0.2) 0 0 3px 1px inset;
-  box-shadow: rgba(0, 0, 255, 0.4) 0 0 25px, rgba(0, 128, 0, 0.2) 0 0 3px 1px inset;
-  width: 300px;
-  padding: 15px 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.chat-collapse-tools i {
-  color: #ff8040;
-  font-size: 19px;
-  margin-right: 20px;
 }
 
 /**

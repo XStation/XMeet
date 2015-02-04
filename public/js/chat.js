@@ -2,7 +2,7 @@
  
     window.chatConfig=window.chatConfig||{
         wsUrl:'ws://121.42.145.18:8080/xgate/websocket',
-        linkKey:'http://www.baidu.com',
+        linkKey:temp,//'http://www.baidu.com',
         serverUrl:'http://localhost:3000'
     }   
     window.globalConfig=window.globalConfig||{

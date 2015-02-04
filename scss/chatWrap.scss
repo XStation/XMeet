@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import "compass";
+@import "font-awesome";
+
+.chat-collapse-tools{
+  @include background-image(linear-gradient(white, #eeeeee 30%, #eeeeee 70%, #dddddd));
+  @include box-shadow(rgba(blue, 0.4) 0 0 25px, rgba(green, 0.2) 0 0 3px 1px inset);
+  width: 300px;
+  padding: 15px 20px;
+  cursor: pointer;
+  i{
+    color: #ff8040;
+    font-size: 19px;
+    margin-right: 20px;
+  }
+  font-weight: bold;
+}
+
+.hide {
+    display: none !important;
+}
+.chat-wrap{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1px;
+  z-index:99999;
+}
+
+#chatframe{
+    display: block;
+    position: static;
+  }
+.chat-ifram-wrap{
+    width: 100%;
+    height: 558px;
+    position: static;
+    background-color: #f00;
+}
+
+.chat-wrap{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1px;
+  z-index:99999;
+}
+
+
+.chat-expand{
+  width: 650px;
+  height: 600px;
+  border: 1px solid #666666;
+  color: #fff;
+  @include border-top-radius(6px);
+  .chat-head-close{
+    padding: 0px;
+    height: 25px;
+    text-align: center;
+    @include border-top-radius(5px);
+    @include background-image(linear-gradient(#666666, #676767));
+    i{
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 7px;
+      margin-right: 15px;
+    }
+  }
+  .chat-ifram-wrap{
+    height: 578px;
+    background-color: #eee;
+    color: #000;
+    overflow: auto;
+  }
+}

@@ -1,36 +1,18 @@
-.chat-wrap{
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	margin: 1px;
-	z-index:99999;
-}
 
-.chat-collapse{
-	
-}
 
-.chat-expand{
-	width: 650px;
-	height: 600px;
-	border: 1px solid #666666;
-	color: #fff;
-	@include border-top-radius(6px);
-//	@include background-image(linear-gradient(white, #eeeeee 30%, #eeeeee 70%, #dddddd));
-//	@include box-shadow(rgba(blue, 0.4) 0 0 25px, rgba(green, 0.2) 0 0 3px 1px inset);
-	.chat-head{
-		padding: 10px;
-		height: 40px;
+.chat-head{
+		padding: 0px;
+		height: 20px;
 		text-align: center;
-		@include border-radius(5px);
+		@include border-bottom-radius(5px);
 		@include background-image(linear-gradient(#666666, #676767));
 		i{
 			font-size: 18px;
 			cursor: pointer;
 		}
-	}
-	.chat-main{
-		height: 508px;
+} 
+.chat-main{
+		height: 503px;
 		background-color: #eee;
 		color: #000;
 		overflow: auto;
@@ -51,8 +33,8 @@
 			    @include border-radius(4px);
 		    }
 		}
-	}
-	.chat-foot{
+}
+.chat-foot{
 		height: 50px;
 		border-top: 1px solid #666666;
 		padding: 10px;
@@ -62,19 +44,5 @@
 			width: 500px;
 			color: #000;
 		}
-	}
 }
 
-.chat-collapse-tools{
-	@include background-image(linear-gradient(white, #eeeeee 30%, #eeeeee 70%, #dddddd));
-	@include box-shadow(rgba(blue, 0.4) 0 0 25px, rgba(green, 0.2) 0 0 3px 1px inset);
-	width: 300px;
-	padding: 15px 20px;
-	cursor: pointer;
-	i{
-		color: #ff8040;
-		font-size: 19px;
-		margin-right: 20px;
-	}
-	font-weight: bold;
-}
