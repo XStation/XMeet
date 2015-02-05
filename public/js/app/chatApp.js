@@ -2,7 +2,7 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
     function(require,$,webSocket,Handlebars) {
         this["members"] = this["members"] || {};
         this["member_count"] = this["member_count"] || 0;
-        this["pid"] = this["pid"] || 0;
+        this["selfpid"] = this["selfpid"] || 0;
         this["Chat"] = this["Chat"] || {};
         this["Chat"]["templates"] = this["Chat"]["templates"] || {};
         this["Chat"]["templates"]["chat"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -85,24 +85,29 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             }
         }
 		function _initMembers(message){
-			this["members"] = message.payload;
+			var members = {};
+			$.each(message.payload, function(k, v){
+                members[v.pid] = v.nickname;
+            });
+			this['members'] = members;
 		}
 		function _joinMember(message){
-			this["members"].push({"pid":message.from, "nickname":message.payload});
+			//this["members"].push({"pid":message.from, "nickname":message.payload});
+			this["members"][message.from] = message.payload;
 		}
 		function _leaveMember(message){
-			console.log(this['members']);
-			//need to do ;
+			var pid = message.from;
+			delete(this["members"][pid]);
 		}
 		function _initSelfInfo(message){
-            this["pid"] = message.payload;
+            this["selfpid"] = message.payload;
         }
         function _renderCount(message){ 
         	this["member_count"] = message.payload;
             $('.chat-title').html("群聊("+this["member_count"]+"人)");
         }
         function _renderJoin(message){
-			if( this["pid"] == message.from ){//自己join的消息不需要增加人数
+			if( this["selfpid"] == message.from ){//自己join的消息不需要增加人数
 			}else{
         		this["member_count"] += 1;
             	$('.chat-title').html("群聊("+this["member_count"]+"人)");
@@ -115,8 +120,8 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
         function _renderMessage(message){
 			var nickname = "匿名";
 			$.each(this["members"], function(k, v){
-				if(v.pid == message.from){
-					nickname= v.nickname;
+				if(k == message.from){
+					nickname= v;
 				}
 			});
 			message.from = nickname+message.from;
