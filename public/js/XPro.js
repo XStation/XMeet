@@ -23,7 +23,7 @@
           '</div>',
           '<div class="chat-collapse-tools">',
             '<i class="fa fa-wechat"></i>',
-            '加入聊天室',
+            '偶遇在同页',
           '</div>'
         ]
         document.getElementsByTagName("head")[0].appendChild(fileref);
