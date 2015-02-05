@@ -1,10 +1,10 @@
 (function(){
-    var documentReay=window.onload;
+    var documentReady=window.onload;
     window.onload=function(){
         var fileref = document.createElement('link');
             fileref.setAttribute("rel","stylesheet");
             fileref.setAttribute("type","text/css");
-            fileref.setAttribute("href",'http://localhost:3000/css/chatWrap.css');
+            fileref.setAttribute("href",'http://xpro.im/css/chatWrap.css');
         var chatConfig={
           linkKey:window.location.href,//chatRoom ID
         } 
@@ -16,7 +16,7 @@
             '</div>', 
             '<div class="chat-main chat-ifram-wrap">',
                 '<iframe id="chatframe" name="chatframe" frameborder="0"',
-                ' src="http://localhost:3000/chatBody.html?linkKey='+chatConfig.linkKey,
+                ' src="http://meet.xpro.im/chatBody.html?linkKey='+chatConfig.linkKey,
                 '" scrolling="no" width="100%" height="100%">',
                 '</iframe>',
             '</div>',
@@ -64,7 +64,9 @@
                 addClass(obj, cls);  
             }  
         }
-        documentReay(); 
+		if(documentReady){
+        	documentReady(); 
+		}
     }
 })()
 

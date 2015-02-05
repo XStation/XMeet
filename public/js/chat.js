@@ -1,9 +1,9 @@
 (function(){
  
     window.chatConfig=window.chatConfig||{
-        wsUrl:'ws://121.42.145.18:8080/xgate/websocket',
-        linkKey:temp,//'http://www.baidu.com',
-        serverUrl:'http://localhost:3000'
+        wsUrl:'ws://meet.xpro.im:8080/xgate/websocket',
+        linkKey:'temp',//'http://www.baidu.com',
+        serverUrl:'http://meet.xpro.im'
     }   
     window.globalConfig=window.globalConfig||{
         serviceUrl:chatConfig.serverUrl+"/", 
