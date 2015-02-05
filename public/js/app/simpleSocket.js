@@ -8,9 +8,9 @@ define(["crypto"], function() {
     };
 
     if(globalConfig&&globalConfig.linkKey){
-        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+globalConfig.linkKey)+"?nickname=深潜运动员";
+        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+globalConfig.linkKey);
     }else{
-        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+window.location.pathname)+"?nickname=深潜运动员";
+        socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+window.location.pathname);
 	}
     return socket.init;
     function _checkSupports(){
