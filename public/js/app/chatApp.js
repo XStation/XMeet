@@ -126,6 +126,7 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 			});
 			message.from = nickname+message.from;
             $('.chat-main').append(Chat.templates.msg(message)); 
+            $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         }
     }
 );
