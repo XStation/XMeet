@@ -7,9 +7,9 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
         this["Chat"]["templates"] = this["Chat"]["templates"] || {};
         this["Chat"]["templates"]["chat"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
           var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-          return "<div class=\"chat-head\">\r\n  <span class=\"title chat-title\">群聊("
+          return "<div class=\"chat-head\">\r\n  <span class=\"title chat-title\">偶遇( "
             + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
-            + "人)</span>\r\n</div>\r\n<div class=\"chat-main\"> \r\n</div>\r\n<div class=\"chat-foot\">\r\n      <textarea class=\"chat-text\" ></textarea>\r\n      <a href=\"#\" class=\"button button-raised button-pill button-inverse button-small pull-right chat-send\">发送</a> \r\n    </div>\r\n</div>";
+            + " 人)</span>\r\n</div>\r\n<div class=\"chat-main\"> \r\n</div>\r\n<div class=\"chat-foot\">\r\n      <textarea class=\"chat-text\" ></textarea>\r\n      <a href=\"#\" class=\"button button-raised button-pill button-inverse button-small pull-right chat-send\">发送</a> \r\n    </div>\r\n</div>";
         },"useData":true});
         this["Chat"]["templates"]["msg"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
           var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -27,8 +27,8 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
            // console.log("connected... success");  
         }; 
         ws.onmessage = function (evt) {
-            var date=JSON.parse(evt.data);
-            _parserMessage(date); 
+            var d =JSON.parse(evt.data);
+            _parserMessage(d); 
         }; 
         ws.onclose = function () {
             console.log("Socket closed! error");   
@@ -110,12 +110,12 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 			if( this["selfpid"] == message.from ){//自己join的消息不需要增加人数
 			}else{
         		this["member_count"] += 1;
-            	$('.chat-title').html("群聊("+this["member_count"]+"人)");
+            	$('.chat-title').html("偶遇( "+this["member_count"]+" 人)");
 			}
         }
         function _renderLeave(message){
         	this["member_count"] -= 1;
-            $('.chat-title').html("群聊("+this["member_count"]+"人)");
+            $('.chat-title').html("偶遇( "+this["member_count"]+" 人)");
         }
         function _renderMessage(message){
 			var nickname = "匿名";
@@ -124,9 +124,53 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 					nickname= v;
 				}
 			});
-			message.from = nickname+message.from;
+			if(this["selfpid"] == message.from){
+				message.from = "我";
+			}else{
+				message.from = nickname+message.from;
+			}
+			var d = new Date(message.send_time);
+			 message.send_time = d.toRelativeTime()+'之前';
             $('.chat-main').append(Chat.templates.msg(message)); 
             $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         }
     }
 );
+
+Date.prototype.toRelativeTime = function(now_threshold) {
+	var delta = new Date() - this;
+
+	now_threshold = parseInt(now_threshold, 10);
+
+	if (isNaN(now_threshold)) {
+		now_threshold = 0;
+	}
+
+	if (delta <= now_threshold) {
+		return '刚刚';
+	}
+
+	var units = null;
+	var conversions = {
+		'毫秒': 1, // ms    -> ms
+		'秒': 1000,   // ms    -> sec
+		'分钟': 60,     // sec   -> min
+		'小时':   60,     // min   -> hour
+		'天':    24,     // hour  -> day
+		'月':  30,     // day   -> month (roughly)
+		'年':   12      // month -> year
+	};
+
+	for (var key in conversions) {
+		if (delta < conversions[key]) {
+			break;
+		} else {
+			units = key; // keeps track of the selected key over the iteration
+			delta = delta / conversions[key];
+		}
+	}
+
+	// pluralize a unit when the difference is greater than 1.
+	delta = Math.floor(delta);
+	return [delta, units].join(" ");
+};
