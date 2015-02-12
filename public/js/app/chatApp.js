@@ -125,12 +125,12 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 				}
 			});
 			if(this["selfpid"] == message.from){
-				message.from = "我";
+				message.from = "我:";
 			}else{
 				message.from = nickname+message.from;
 			}
 			var d = new Date(message.send_time);
-			 message.send_time = d.toRelativeTime()+'之前';
+			 message.send_time = d.toRelativeTime();
             $('.chat-main').append(Chat.templates.msg(message)); 
             $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         }
@@ -172,5 +172,9 @@ Date.prototype.toRelativeTime = function(now_threshold) {
 
 	// pluralize a unit when the difference is greater than 1.
 	delta = Math.floor(delta);
-	return [delta, units].join(" ");
+	if(units=="毫秒"){
+		return "刚刚";
+	}else{
+		return [delta, units].join(" ");
+	}
 };
