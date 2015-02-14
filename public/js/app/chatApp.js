@@ -60,9 +60,10 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
         function _parserMessage(message){
             switch(message.type)
             {
-            case 'member_count':
-              _renderCount(message);
-              break;
+			//由于消息的到达不一定有顺序性, 暂时不需要这个接口
+            //case 'member_count':
+            //  _renderCount(message);
+            //  break;
             case 'members':
               _initMembers(message);
               break;
@@ -70,11 +71,9 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
               _initSelfInfo(message);
               break;
             case 'join':
-              _renderJoin(message);
 			  _joinMember(message);
               break;
 			case 'leave':
-              _renderLeave(message);
 			  _leaveMember(message);
               break;
             case 'normal':
@@ -90,32 +89,27 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
                 members[v.pid] = v.nickname;
             });
 			this['members'] = members;
+			_renderCount();
 		}
 		function _joinMember(message){
-			//this["members"].push({"pid":message.from, "nickname":message.payload});
 			this["members"][message.from] = message.payload;
+			_renderCount();
 		}
 		function _leaveMember(message){
 			var pid = message.from;
 			delete(this["members"][pid]);
+			_renderCount();
 		}
 		function _initSelfInfo(message){
             this["selfpid"] = message.payload;
         }
-        function _renderCount(message){ 
-        	this["member_count"] = message.payload;
+        function _renderCount(){ 
+			var count = 0;
+			$.each(this["members"], function(k, v){
+				count++;
+            });
+        	this["member_count"] = count;
             $('.chat-title').html("群聊("+this["member_count"]+"人)");
-        }
-        function _renderJoin(message){
-			if( this["selfpid"] == message.from ){//自己join的消息不需要增加人数
-			}else{
-        		this["member_count"] += 1;
-            	$('.chat-title').html("偶遇( "+this["member_count"]+" 人)");
-			}
-        }
-        function _renderLeave(message){
-        	this["member_count"] -= 1;
-            $('.chat-title').html("偶遇( "+this["member_count"]+" 人)");
         }
         function _renderMessage(message){
 			var nickname = "匿名";
