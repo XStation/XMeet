@@ -78,8 +78,13 @@
           <hr>
 		  <ul>
 
-			<li>复制这段js在里需要有聊天室的页面上:</li>
+			<li>复制这段js在里需要有聊天室的页面上, 每个页面都是独立的空间:</li>
 			<li style="color:blue">&lt;script type=&quot;text/javascript&quot; src=&quot;http://meet.xpro.im/js/XMeet.js&quot;&gt;&lt;/script&gt;</li>
+		  </ul>
+		  <ul>
+
+			<li>或者配置一个聊天空间, 这样就可以让不同的页面共享一个聊天空间:</li>
+			<li style="color:blue">&lt;script type=&quot;text/javascript&quot; src=&quot;http://meet.xpro.im/js/XMeet.js&quot; onload="XMeet.Config('xnest=yourNameSpace') &gt; &lt; /script&gt;</li>
 		  </ul>
         </div>
         <!-- .col-sm-12 -->
