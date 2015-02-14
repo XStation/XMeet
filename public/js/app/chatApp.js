@@ -123,8 +123,8 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 			}else{
 				message.from = nickname+message.from;
 			}
-			var d = new Date(message.send_time);
-			 message.send_time = d.toRelativeTime();
+			var d = new Date();
+			 message.send_time = d.toRelativeTime(message.send_time);
             $('.chat-main').append(Chat.templates.msg(message)); 
             $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         }
