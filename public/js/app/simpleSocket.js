@@ -2,11 +2,13 @@ define(["crypto"], function() {
 
     var socket={
     	supports:_checkSupports(),
-    	wsUrl:'ws://121.42.145.18:8080/xgate/websocket/',
+    	wsUrl:'ws://meet.xpro.im:8080/xgate/websocket/',
     	customMark:'',
     	init:_initSocket
     };
 
+console.log(globalConfig.linkKey);
+console.log(window.location.pathname);
     if(globalConfig&&globalConfig.linkKey){
         socket['wsUrl']=socket.wsUrl+Crypto.MD5(window.location.host+globalConfig.linkKey);
     }else{

@@ -6,15 +6,13 @@
 
 <script type="text/javascript">
  
- 	var temp=window.location.search.substr(1).split("&")[0].split("=")[1];
-  console.log(temp);
-/*
+ 	var xnest = window.location.search.substr(1).split("&")[0].split("=")[1]; //获取传递过来的xnest名称
+console.log(xnest);
     chatConfig={
       wsUrl:'ws://xpro.im:8080/xgate/websocket',
-      linkKey:'thisisaname',//chatRoom ID
+      linkKey: xnest,//chatRoom ID
       serverUrl:'http://meet.xpro.im'//web服务路径
     } 
-    */
 </script> 
 <!-- 加载标签样式http://meet.xpro.im-->
 <script type="text/javascript"  data-main="http://meet.xpro.im/js/chat"   src="http://meet.xpro.im/js/libs/require.js"></script> 
