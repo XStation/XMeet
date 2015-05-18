@@ -121,7 +121,8 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 			if(this["selfpid"] == message.from){
 				message.from = "我:";
 			}else{
-				message.from = nickname+message.from;
+				message.from = nickname;
+				//message.from = nickname+message.from;
 			}
 			var d = new Date();
 			 message.send_time = d.toRelativeTime(message.send_time);
