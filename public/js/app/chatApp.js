@@ -11,6 +11,7 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
             + " 人)</span>\r\n</div>\r\n<div class=\"chat-main\"> \r\n</div>\r\n<div class=\"chat-foot\">\r\n      <textarea class=\"chat-text\" ></textarea>\r\n      <a href=\"#\" class=\"button button-raised button-pill button-inverse button-small pull-right chat-send\">发送</a> \r\n    </div>\r\n</div>";
         },"useData":true});
+		//normal message
         this["Chat"]["templates"]["msg"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
           var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
           return "<div class=\"chat-item\">\r\n  <div class=\"chat-profile\">"
@@ -21,6 +22,33 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
             + "\r\n  </div>\r\n</div>";
         },"useData":true});
+
+		//join message
+        this["Chat"]["templates"]["joinmsg"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+          var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+          return "<div class=\"chat-item\">\r\n  <div class=\"chat-profile\">"
+            + escapeExpression(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"from","hash":{},"data":data}) : helper)))
+            + "<span class=\"pull-right\">"
+            + escapeExpression(((helper = (helper = helpers.send_time || (depth0 != null ? depth0.send_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"send_time","hash":{},"data":data}) : helper)))
+            + "</span></div> \r\n  <div class=\"chat-msg\">"
+            + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
+            + "\r\n  </div>\r\n</div>";
+        },"useData":true});
+		//leave message
+        this["Chat"]["templates"]["leavemsg"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+          var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+          return "<div class=\"chat-item\">\r\n  <div class=\"chat-profile\">"
+            + escapeExpression(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"from","hash":{},"data":data}) : helper)))
+            + "<span class=\"pull-right\">"
+            + escapeExpression(((helper = (helper = helpers.send_time || (depth0 != null ? depth0.send_time : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"send_time","hash":{},"data":data}) : helper)))
+            + "</span></div> \r\n  <div class=\"chat-msg\">"
+            + escapeExpression(((helper = (helper = helpers.payload || (depth0 != null ? depth0.payload : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"payload","hash":{},"data":data}) : helper)))
+            + "\r\n  </div>\r\n</div>";
+        },"useData":true});
+
+
+
+
         $('body').append(Chat.templates.chat({}));
         var ws=webSocket(); 
         ws.onopen = function () {
@@ -93,10 +121,12 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 		}
 		function _joinMember(message){
 			this["members"][message.from] = message.payload;
+			_renderJoinMessage(message);
 			_renderCount();
 		}
 		function _leaveMember(message){
 			var pid = message.from;
+			_renderLeaveMessage(message);
 			delete(this["members"][pid]);
 			_renderCount();
 		}
@@ -110,6 +140,43 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
             });
         	this["member_count"] = count;
             $('.chat-title').html("群聊("+this["member_count"]+"人)");
+        }
+
+        function _renderJoinMessage(message){
+			var nickname = "匿名";
+			$.each(this["members"], function(k, v){
+				if(k == message.from){
+					nickname= v;
+				}
+			});
+			if(this["selfpid"] == message.from){
+				message.from = "我:";
+			}else{
+				message.from = nickname;
+				//message.from = nickname+message.from;
+			}
+			var d = new Date();
+			 message.send_time = d.toRelativeTime(message.send_time);
+            $('.chat-main').append(Chat.templates.joinmsg(message)); 
+            $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
+        }
+        function _renderLeaveMessage(message){
+			var nickname = "匿名";
+			$.each(this["members"], function(k, v){
+				if(k == message.from){
+					nickname= v;
+				}
+			});
+			if(this["selfpid"] == message.from){
+				message.from = "我:";
+			}else{
+				message.from = nickname;
+				//message.from = nickname+message.from;
+			}
+			var d = new Date();
+			 message.send_time = d.toRelativeTime(message.send_time);
+            $('.chat-main').append(Chat.templates.leavemsg(message)); 
+            $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         }
         function _renderMessage(message){
 			var nickname = "匿名";
