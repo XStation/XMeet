@@ -1,0 +1,893 @@
+<html>
+<head>
+	<meta http-equiv="content-type"	content="text/html;	charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>xmeet消息接口</title>
+
+    <link rel="stylesheet" href="/ymain.css" type="text/css">
+</head>
+
+<body class="share-page">
+
+<div id="wrap" class="single-note">
+<div	class="blk-top fit-size-sibling">
+<div id="nw_head_menu">
+</div>
+</div>
+<div class="blk-mid	fit-size">
+	<div class="blk-main">
+	<div class="blk-note">
+<div class="blk-bd">
+<div class="note-title">
+<p class="note-title-text">xmeet消息接口</p>
+</div>
+<div class="blk-expand meta	fit-size-sibling" style="display: block;">
+<div class="meta-info">
+	<span class="meta-item">
+		<span class="meta-create meta-col">
+			<i>
+</i>
+			<span>创建时间：</span>
+			2015-4-8 14:02</span>
+	</span>
+	<span class="meta-item">
+		<span class="meta-update meta-col">
+			<i>
+</i>
+			<span>修改时间：</span>
+			2015-6-20 15:07</span>
+	</span>
+	
+</div>
+</div>
+<div class="note-content">
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace"	size="4">
+<span style="line-height: 18px;">
+<b>0x00 名词解释:</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">{}里的表示变量</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">xnest表示一个聊天室</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">xnest_id表示该聊天室的id.</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">连接地址:</span>
+</font>
+</div>
+<div>
+<span style="background-color: rgb(255, 255,	255); color: rgb(34, 34, 34); font-family: Consolas, 'Lucida Console', monospace; font-size: 12px; line-height:	1.5;">ws://meet.xpro.im:8080/xgate/websocket/{$xnest_id}?nickname={$nickname}</span>
+</div>
+<div>
+<span style="background-color: rgb(255, 255,	255); color: rgb(34, 34, 34); font-family: Consolas, 'Lucida Console', monospace; font-size: 12px; line-height:	1.5;">
+<br>
+</span>
+</div>
+<div>
+<span style="background-color: rgb(255,	255, 255); color: rgb(34, 34, 34); font-family:	Consolas, 'Lucida Console',	monospace; font-size: 12px;	line-height: 1.5;">$xnest_id: 代表聊天室的唯一标识</span>
+</div>
+<div>
+<span style="background-color: rgb(255,	255, 255); color: rgb(34, 34, 34); font-family:	Consolas, 'Lucida Console',	monospace; font-size: 12px;	line-height: 1.5;">$nickname: 进入聊天室的昵称(进入一次后, 服务器会把该昵称写入到cookie, 下次不带昵称会默认是用cookie里的, 如果cookie和参数都没有, 服务器会默认使用一个随机的昵称)</span>
+</div>
+<div>
+<span style="background-color: rgb(255,	255, 255); color: rgb(34, 34, 34); font-family:	Consolas, 'Lucida Console',	monospace; font-size: 12px;	line-height: 1.5;">
+<br>
+</span>
+</div>
+<div>
+<font face="Consolas" size="4">
+<b>0x01	客户端(如js)连接:</b>
+</font>
+</div>
+<div>
+<font face="Consolas" style="font-size: 12px;">客户端通过websocket连接服务器</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">连接成功后:服务器会推送一些该聊天室的数据过来</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">格式为json文本,如下:</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<span style="background-color:rgb(255,	255, 255);color:rgb(34,	34,	34);font-family:Consolas, 'Lucida Console',	monospace;font-size:12px;font-style:normal;font-weight:normal;text-align:left;">{</span>
+</span>
+</font>
+</div>
+<div>
+<span style="background-color:	rgb(255, 255, 255);	color: rgb(34, 34, 34);	font-family: Consolas, 'Lucida Console', monospace;	font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "from":"{$sender_id}",</span>
+</div>
+<div>
+<span style="background-color: rgb(255, 255,	255); color: rgb(34, 34, 34); font-family: Consolas, 'Lucida Console', monospace; font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "xnest":"{$xnest_id}",</span>
+</div>
+<div>
+<span style="background-color:	rgb(255, 255, 255);	color: rgb(34, 34, 34);	font-family: Consolas, 'Lucida Console', monospace;	font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "type":"{$type}",</span>
+</div>
+<div>
+<span	style="background-color: rgb(255, 255, 255); color:	rgb(34,	34,	34); font-family: Consolas,	'Lucida	Console', monospace; font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"payload":"{$payload}",</span>
+</div>
+<div>
+<span style="background-color:	rgb(255, 255, 255);	color: rgb(34, 34, 34);	font-family: Consolas, 'Lucida Console', monospace;	font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "send_time":"{$time}"</span>
+</div>
+<div>
+<span	style="background-color: rgb(255, 255, 255); color:	rgb(34,	34,	34); font-family: Consolas,	'Lucida	Console', monospace; font-size:	12px; line-height: 18px;">}</span>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<span style="background-color:rgb(255, 255,	255);color:rgb(34, 34, 34);font-family:Consolas, 'Lucida Console', monospace;font-size:12px;font-style:normal;font-weight:normal;text-align:left;">from: 表示发送者的唯一id;</span>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">
+<span style="background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);font-family:Consolas,	'Lucida	Console', monospace;font-size:12px;font-style:normal;font-weight:normal;text-align:left;">xnest:表示该聊天室的唯一id</span>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">
+<span style="background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);font-family:Consolas,	'Lucida	Console', monospace;font-size:12px;font-style:normal;font-weight:normal;text-align:left;">type:表示该消息的类型, 主要有:</span>
+</span>
+</font>
+<span style="font-family: Monaco, Consolas, Courier, 'Lucida Console',	monospace; font-size: 13.6000003814697px; line-height: 18px;">
+<font	color="#ff0000">&nbsp;members |	member_count | normal |	join | leave | self</font>
+</span>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">payload:消息的有效内容.</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">send_time:该消息发送出来的时间</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<b>服务按如下次序推送消息过来:</b>
+</span>
+</font>
+</div>
+<div>
+<font face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">
+<b>1.接收自己在该聊天室的唯一id</b>
+</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">类型为:self, 有效内容为自己的id.</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">{</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "type":"self",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "payload":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "send_time":"2015-4-8 14:2:6"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">}</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<font	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<b>2.接收该聊天室的成员数量</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">类型为:member_count,有效内容为1, 及表示当前成员数量为1</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">{</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"type":"member_count",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"payload":1,</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "send_time":"2015-4-8	14:2:6"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">}</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<b>3.接收成员列表</b>
+</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">类型为:members, 内容为json数组, 包含当前所有聊天室成员的pid和nickname</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">{</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	&nbsp; &nbsp;"type":"members",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"payload":[{"pid":"&lt;0.31891.2&gt;","nickname":"小明"}],</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "send_time":"2015-4-8 14:2:6"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">}</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<br>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace"	size="4">
+<span style="line-height: 18px;">
+<b>0x02 连接建立成功后</b>
+</span>
+</font>
+</div>
+<div>
+<font face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<font color="#222222">连接保持期间,	如果有</font>
+<b	style="color: rgb(34, 34, 34);">新加入的成员</b>
+<font color="#222222">进来,	老</font>
+<b	style="color: rgb(34, 34, 34);">成员离开</b>
+<font color="#222222">,	</font>
+<b>消息接收,&nbsp;</b>
+<font color="#222222">服务端都会推送一条消息给客户端,如下:</font>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">
+<b>1.接收新近成员消息(当有新成员加入聊天室时)</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">类型为:<b>join</b>, payload为该加入成员的昵称, 加入成员的id在from字段里.</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">{</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "type":"join",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "payload":"黑旋风李逵",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "send_time":"2015-4-8 14:2:6"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">}</span>
+</font>
+</div>
+<div>
+<span	style="background-color: rgb(255, 255, 255); color:	rgb(34,	34,	34); font-family: Consolas,	'Lucida	Console', monospace; font-size:	12px; line-height: 1.5;">
+<br>
+</span>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">
+<b>2.	接收离开成员消息(当有其他成员离开聊天室时候)</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">类型为:<b>leave</b>,payload为固定的leave. 离开成员的id在from字段里.</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">{</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "from":"&lt;0.31916.2&gt;",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "type":"leave",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "payload":"leave",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "send_time":"2015-4-8	14:23:28"</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">}</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<div	style="background-color:rgb(255, 255, 255);color:rgb(0,	0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">3. 普通消息的发送(这里就直接发送消息体就可以了,	没有格式.)</b>
+</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">比如我发送了:	&nbsp;大家好!</span>
+</font>
+</div>
+</div>
+<div	style="background-color:rgb(255, 255, 255);color:rgb(0,	0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">js客户端可能是如下代码:</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">ws.send("大家好");</span>
+</font>
+</div>
+<div style="font-family: 微软雅黑; font-size: 14px;	font-style:	normal;	font-weight: normal; text-align: left;">
+<font face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px;">具体可参考最后面的js示例代码!</span>
+</font>
+</div>
+<div>
+<br>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<b>4. 普通消息接收(及其他成员发送的消息)</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">类型为:<b>normal</b>, payload就是成员发送的消息.如上例,payload里就是大家好.from就是发送者的id.</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">{</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"type":"normal",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "payload":"大家好",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "send_time":</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">&nbsp; &nbsp; "2015-4-8 14:25:30"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">}</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<b>5. 用户昵称改变昵称</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">用户可发送<b> @changename:新昵称	&nbsp;</b>来修改自己的昵称.发送后服务器会广播消息到所有用户</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">
+<b>
+</b>
+</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">类型为:<b	style="background-color:inherit;">changename</b>, payload成员修改后的昵称, 该成员的id在from字段里.</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">例子:</span>
+</font>
+</div>
+<div	style="background-color:rgb(255, 255, 255);color:rgb(0,	0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">{</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255, 255);color:rgb(0, 0,	0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255,	255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida	Console, monospace"	style="background-color:inherit;">
+<span	style="background-color:inherit;font-size:12px;">&nbsp;	&nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">&nbsp; &nbsp;	"type":"changename",</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255, 255);color:rgb(0, 0,	0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">&nbsp; &nbsp; "payload":"黑旋风李逵",</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">&nbsp; &nbsp;	"send_time":"2015-4-8 14:2:6"</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255,	255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:18px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida	Console, monospace"	style="background-color:inherit;">
+<span	style="background-color:inherit;font-size:12px;">}</span>
+</font>
+</div>
+<div>
+<div	style="background-color:rgb(255, 255, 255);color:rgb(0,	0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">
+<br>
+</b>
+</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255, 255);color:rgb(0, 0,	0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">
+<br>
+</b>
+</span>
+</font>
+</div>
+<div style="background-color: rgb(255,	255, 255); color: rgb(0, 0,	0);	font-family: 微软雅黑; font-style: normal; font-weight:	normal;	text-align:	left;">
+<font color="#222222" face="Consolas, Lucida	Console, monospace"	style="background-color: inherit;" size="4">
+<span style="background-color: inherit;">
+<b	style="background-color: inherit;">0x03	js示例</b>
+</span>
+</font>
+</div>
+<div style="background-color:rgb(255,	255, 255);color:rgb(0, 0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">
+<br>
+</b>
+</span>
+</font>
+</div>
+<div	style="background-color:rgb(255, 255, 255);color:rgb(0,	0, 0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">
+<br>
+</b>
+</span>
+</font>
+</div>
+<div style="background-color:rgb(255, 255, 255);color:rgb(0, 0,	0);font-family:微软雅黑;font-size:14px;font-style:normal;font-weight:normal;text-align:left;">
+<table border="1"	cellpadding="2"	cellspacing="0"	style="width: auto;">
+<tbody>
+<tr>
+<td	style="width: 100% height: 31px;">&lt;html&gt;
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;head&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&lt;title&gt;Demo&lt;/title&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&lt;meta	http-equiv="content-type" content="text/html;charset=utf-8"&gt;&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;script src="jquery.js?bust=1"	type="text/javascript"&gt;&lt;/script&gt;&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&lt;script type="text/javascript"&gt;&nbsp;</span>
+<br>
+<br>function sc(){
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&nbsp; &nbsp;	var	div	= document.getElementById("console_wrapper");&nbsp;</span>
+<br>&nbsp; &nbsp;	div.scrollTop =	div.scrollHeight;
+<br>}
+<br>
+<br>var	ws;
+<br>
+<br>$(document).ready(function () {
+<br>&nbsp; &nbsp; var s	= setInterval("sc()", 500);
+<br>&nbsp; &nbsp;&nbsp;<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">if	("WebSocket" in	window)	{&nbsp;</span>
+<br>&nbsp; &nbsp;	&nbsp; &nbsp; debug("Browser supports web sockets!", 'success');
+<br>&nbsp; &nbsp; &nbsp; &nbsp;	connect($('#host').val());
+<br>&nbsp; &nbsp; &nbsp; &nbsp;	$('#console_send').removeAttr('disabled');
+<br>&nbsp; &nbsp; }	else {
+<br>&nbsp; &nbsp; &nbsp; &nbsp;	debug("Browser does	not	support	web	sockets", 'error');
+<br>&nbsp; &nbsp; };
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">// function to send data on the web socket&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&nbsp; &nbsp; function ws_send(str) {&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&nbsp; &nbsp; &nbsp;	&nbsp; try {&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; ws.send(str);&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&nbsp;	&nbsp; &nbsp; &nbsp; } catch (err) {&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; debug(err,	'error');&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&nbsp; &nbsp; &nbsp; &nbsp;	}&nbsp;</span>
+<br>&nbsp; &nbsp;	}
+<br>
+<span style="background-color: rgb(255,	255, 255); font-size: inherit; line-height:	1.5;">// connect to	the	specified host&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">function connect(host)	{&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255);">&nbsp; &nbsp;&nbsp;</span>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">debug("Connecting	to " + host	+ "	...");&nbsp;</span>
+<br>&nbsp; &nbsp; try {
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255);">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">ws = new WebSocket(host);	// create the web socket&nbsp;</span>
+<br>&nbsp;	&nbsp; } catch (err) {
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255);">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">debug(err, 'error');&nbsp;</span>
+<br>&nbsp; &nbsp; }
+<br>&nbsp; $('#host_connect').attr('disabled', true); // disable the 'reconnect' button
+<br>&nbsp; ws.onopen = function	() {
+<br>&nbsp; debug("connected... ", 'success'); // we	are	in!	:D
+<br>};
+<br>ws.onmessage = function	(evt) {
+<br>debug(evt.data,	'response'); //	we got some	data - show	it omg!!
+<br>};
+<br>ws.onclose = function () {
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255);">&nbsp; &nbsp;</span>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">debug("Socket	closed!", 'error');	// the socket was closed (this could be	an error or	simply that	there is no	server)&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255);">&nbsp; &nbsp;</span>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">$('#host_connect').attr('disabled', false); // re-enable the 'reconnect button&nbsp;</span>
+<br>};
+<br>};
+<br>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">// function to display stuff,	the	second parameter is	the	class of the &lt;p&gt; (used for styling)&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">function debug(msg,	type) {&nbsp;</span>
+<br>&nbsp; &nbsp; $("#console").append('&lt;p class="' + (type || '') +	'"&gt;'	+ msg +	'&lt;/p&gt;');
+<br>};
+<br>
+<br>// the user	clicked	to 'reconnect' button
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">$('#host_connect').click(function	() {&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&nbsp; &nbsp; debug("\n");&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&nbsp; &nbsp; connect($('#host').val());&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">});&nbsp;</span>
+<br>
+<span style="background-color: rgb(255, 255,	255); font-size: inherit; line-height: 1.5;">//	the	user clicked the send button&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">$('#console_send').click(function ()	{&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">var	time = new Date().getTime();&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">var msg = $('#console_input').val() + time;&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">ws_send(msg);&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">$('#console_input').val(' ');&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">});&nbsp;</span>
+<br>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">$('#console_input').keyup(function (e) {&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">if(e.keyCode == 13){ // enter	is pressed&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255);">&nbsp; &nbsp;&nbsp;</span>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">ws_send($('#console_input').val());&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255);">&nbsp; &nbsp;</span>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">$('#console_input').val(' ');&nbsp;</span>
+<br>}
+<br>});
+<br>});
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;/script&gt;&nbsp;</span>
+<br>
+<br>&lt;style	type="text/css"&gt;
+<br>.error {color: red;}
+<br>.success {color: green;}
+<br>#console_wrapper {background-color:	black; color:white;padding:5px;}
+<br>#console p {padding:0;margin:0;}
+<br>&lt;/style&gt;
+<br>&lt;/head&gt;<br>&lt;body&gt;
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;h1&gt;Xmeet Demo&lt;/h1&gt;&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&lt;div	id="server_wrapper"	&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&lt;p&gt;Server&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&lt;input type="text" name="host" id="host" value="ws://meet.xpro.im:8080/xgate/websocket/xnestname" /&gt;&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;input	type="submit" name="host_connect" id="host_connect"	value="重新连接" /&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&lt;/p&gt;&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;/div&gt;&nbsp;</span>
+<br>
+<br>&lt;div id="console_wrapper"	style="overflow:auto; height:600px;	border:	1px	solid #999;"&gt;
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;pre id="console"&gt;&lt;/pre&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&lt;/div&gt;&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&lt;div&gt;&nbsp;</span>
+<br>
+<span style="font-size:	inherit; background-color: rgb(255,	255, 255); line-height:	1.5;">&lt;input	type="text"	name="console_input" id="console_input"	value="" /&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit;	background-color: rgb(255, 255,	255); line-height: 1.5;">&lt;input type="submit" name="console_send" id="console_send" value="Send"	/&gt;&nbsp;</span>
+<br>
+<span	style="font-size: inherit; background-color: rgb(255, 255, 255); line-height: 1.5;">&lt;/div&gt;&nbsp;</span>
+<br>
+<span style="background-color:	rgb(255, 255, 255);	font-size: inherit;	line-height: 1.5;">&lt;/body&gt;&nbsp;</span>
+<br>
+<span style="font-size: inherit; background-color:	rgb(255, 255, 255);	line-height: 1.5;">&lt;/html&gt;</span>
+</td>
+</tr>
+</tbody>
+</table>
+<font color="#222222" face="Consolas, Lucida Console, monospace" style="background-color:inherit;">
+<span style="background-color:inherit;font-size:12px;">
+<b style="background-color:inherit;">
+<br>
+</b>
+</span>
+</font>
+<div><a target="_blank" href="http://meet.xpro.im:8080/demo.html">运行一下</a>
+ </div> 
+
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
