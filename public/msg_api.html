@@ -60,7 +60,7 @@
 </div>
 <div>
 <font color="#222222" face="Consolas, Lucida Console, monospace">
-<span	style="font-size: 12px;	line-height: 18px;">xnest_id表示该聊天室的id.</span>
+<span	style="font-size: 12px;	line-height: 18px;">xnest_id表示该聊天室的id.(用户可以自己取, 最好不超过32个字符)</span>
 </font>
 </div>
 <div>
@@ -151,7 +151,7 @@
 </span>
 </font>
 <span style="font-family: Monaco, Consolas, Courier, 'Lucida Console',	monospace; font-size: 13.6000003814697px; line-height: 18px;">
-<font	color="#ff0000">&nbsp;members |	member_count | normal |	join | leave | self</font>
+<font	color="#ff0000">&nbsp;members |	member_count | normal |	join | leave | self | changename | history</font>
 </span>
 </div>
 <div>
@@ -237,6 +237,7 @@
 </span>
 </font>
 </div>
+
 <div>
 <font	face="Consolas,	Lucida Console,	monospace">
 <span style="font-size: 12px; line-height: 18px;">
@@ -296,6 +297,10 @@
 </span>
 </font>
 </div>
+
+
+
+
 <div>
 <font color="#222222" face="Consolas, Lucida Console, monospace">
 <span	style="font-size: 12px;	line-height: 18px;">
@@ -348,6 +353,76 @@
 <span style="font-size:	12px; line-height: 18px;">}</span>
 </font>
 </div>
+
+
+<div>
+<font	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">
+<b>4.接收该聊天室的历史记录, 目前只会保留一定数量的记录</b>
+</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+类型为:history,有效内容为第一层的payload, 格式是个列表, 每条记录包含发送者id, 内容和时间</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">例子:</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">{</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "from":"&lt;0.31891.2&gt;",</span>
+</font>
+</div>
+<div>
+<font	color="#222222"	face="Consolas,	Lucida Console,	monospace">
+<span style="font-size: 12px; line-height: 18px;">&nbsp;	&nbsp; "xnest":"f45c6d7720375d90f660a7b7e3ae11bf",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp;	"type":"history",</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida	Console, monospace">
+<span style="font-size:	12px; line-height: 18px;">&nbsp; &nbsp; "payload":[</br>
+{"from":"<0.1897.0>","payload":" 12121435131197391","send_time":"2015-06-24"},</br>
+{"from":"<0.1897.0>","payload":" 1111435131194487","send_time":"2015-06-24"}, </br>
+{"from":"<0.1897.0>","payload":" 大大的1435131192974","send_time":"2015-06-24"}, </br>
+{"from":"<0.1897.0>","payload":"爱上对方1435131191173","send_time":"2015-06-24"}],</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">&nbsp; &nbsp; "send_time":"2015-4-8	14:2:6"</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span style="font-size: 12px; line-height:	18px;">}</span>
+</font>
+</div>
+<div>
+<font color="#222222" face="Consolas, Lucida Console, monospace">
+<span	style="font-size: 12px;	line-height: 18px;">
+<br>
+</span>
+</font>
+</div>
+
+
+
+
 <div>
 <font color="#222222" face="Consolas, Lucida Console, monospace">
 <span style="font-size: 12px; line-height:	18px;">
