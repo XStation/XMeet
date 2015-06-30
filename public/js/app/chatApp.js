@@ -139,7 +139,7 @@ define(["require","jquery","simpleSocket",'handlebars','json3'],
 				count++;
             });
         	this["member_count"] = count;
-            $('.chat-title').html("群聊("+this["member_count"]+"人)");
+            $('.chat-title').html("请访问<a href='http://meet.xpro.im' target='parent'>meet.xpro.im</a>获取最新版本("+this["member_count"]+"人)");
         }
 
         function _renderJoinMessage(message){
