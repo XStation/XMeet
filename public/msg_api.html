@@ -1,480 +1,202 @@
-<!DOCTYPE html>
+
 <html>
 <head>
-<title>msg_api</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
-/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
-/* Author: Nicolas Hery - http://nicolashery.com */
-/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
-/* Source: https://github.com/nicolahery/markdownpad-github */
-
-/* RESET
-=============================================================================*/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-/* BODY
-=============================================================================*/
-
-body {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-body>*:first-child {
-  margin-top: 0 !important;
-}
-
-body>*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* BLOCKS
-=============================================================================*/
-
-p, blockquote, ul, ol, dl, table, pre {
-  margin: 15px 0;
-}
-
-/* HEADERS
-=============================================================================*/
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
-  font-size: inherit;
-}
-
-h1 {
-  font-size: 28px;
-  color: #000;
-}
-
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #ccc;
-  color: #000;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 16px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  color: #777;
-  font-size: 14px;
-}
-
-body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
-  margin-top: 10px;
-}
-
-/* LINKS
-=============================================================================*/
-
-a {
-  color: #4183C4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* LISTS
-=============================================================================*/
-
-ul, ol {
-  padding-left: 30px;
-}
-
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
-ol li ul:first-of-type {
-  margin-top: 0px;
-}
-
-ul ul, ul ol, ol ol, ol ul {
-  margin-bottom: 0;
-}
-
-dl {
-  padding: 0;
-}
-
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-
-dl dt:first-child {
-  padding: 0;
-}
-
-dl dt>:first-child {
-  margin-top: 0px;
-}
-
-dl dt>:last-child {
-  margin-bottom: 0px;
-}
-
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-
-dl dd>:first-child {
-  margin-top: 0px;
-}
-
-dl dd>:last-child {
-  margin-bottom: 0px;
-}
-
-/* CODE
-=============================================================================*/
-
-pre, code, tt {
-  font-size: 12px;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-}
-
-code, tt {
-  margin: 0 0px;
-  padding: 0px 0px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px;
-}
-
-pre>code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent;
-}
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px;
-}
-
-pre code, pre tt {
-  background-color: transparent;
-  border: none;
-}
-
-kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 10px;
-    padding: 1px 4px;
-}
-
-/* QUOTES
-=============================================================================*/
-
-blockquote {
-  border-left: 4px solid #DDD;
-  padding: 0 15px;
-  color: #777;
-}
-
-blockquote>:first-child {
-  margin-top: 0px;
-}
-
-blockquote>:last-child {
-  margin-bottom: 0px;
-}
-
-/* HORIZONTAL RULES
-=============================================================================*/
-
-hr {
-  clear: both;
-  margin: 15px 0;
-  height: 0px;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  border-bottom: 4px solid #ddd;
-  padding: 0;
-}
-
-/* TABLES
-=============================================================================*/
-
-table th {
-  font-weight: bold;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 6px 13px;
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-/* IMAGES
-=============================================================================*/
-
-img {
-  max-width: 100%
-}
-</style>
+  <title>偶遇消息接口</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/277494; Windows/6.1.7601 Service Pack 1 (Win64);"/>
+  <meta name="content-class" content="maxiang"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
 </head>
 <body>
-<h1>0x00 名词解释:</h1>
-<p>{}里的表示变量<br />
-<strong><em>xnest</em></strong>表示一个聊天室<br />
-<strong><em>xnest_id</em></strong>表示该聊天室的id.(用户可以自己取, 最好不超过32个字符)<br />
-连接地址:  </p>
-<blockquote>
-<p>ws://meet.xpro.im:8080/xgate/websocket/{$xnest_id}?nickname={$nickname}</p>
+<a name="297"/>
+
+<div><span lang="v2" style="color: #2c3f51; font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif; line-height: 1.6;"><del style="position:relative;display:block;z-index:10;"><a href="http://maxiang.io/#/?provider=evernote&amp;guid=6d0a67bd-3417-4bee-968a-10e2624a31a4&amp;notebook=XPro" style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;">Edit</a></del><div style="color: #2c3f51; font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif; line-height: 1.6;">
+                        <div style="line-height: 1.6;"></div>
+                    <div style="line-height: 1.6;">
+
+</div><div style="line-height: 1.6;">
+
+<h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">0x00 名词解释:</h1>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;"></p>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">{}</em></strong>里的表示变量 <br/>
+<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">xnest</em></strong>表示一个聊天室 <br/>
+<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">xnest_id</em></strong>表示该聊天室的id.(用户可以自己取, 最好不超过32个字符) <br/>
+连接地址:  </p>
+
+<blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+  <p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">ws://meet.xpro.im:8080/xgate/websocket/{<span style="line-height: 1.6;">$</span>xnest_id}?nickname={$nickname}</p>
 </blockquote>
-<p><strong><em>$xnest_id</em></strong>: 代表聊天室的唯一标识
-<strong><em>$nickname</em></strong>: 进入聊天室的昵称(进入一次后, 服务器会把该昵称写入到cookie, 下次不带昵称会默认是用cookie里的, 如果cookie和参数都没有, 服务器会默认使用一个随机的昵称)</p>
-<h1>0x01 客户端(如js)连接:</h1>
-<p>客户端通过websocket连接服务器<br />
-连接成功后:服务器会推送一些该聊天室的数据过来<br />
-格式为json文本,如下:  </p>
-<pre><code>{  
-    &quot;from&quot;:&quot;{$sender_id}&quot;,  
-    &quot;xnest&quot;:&quot;{$xnest_id}&quot;,  
-    &quot;type&quot;:&quot;{$type}&quot;,  
-    &quot;payload&quot;:&quot;{$payload}&quot;,  
-    &quot;send_time&quot;:&quot;{$time}&quot;  
-}
-</code></pre>
 
-<ul>
-<li>from: 表示发送者的唯一id;  </li>
-<li>xnest:表示该聊天室的唯一id  </li>
-<li>type:表示该消息的类型, 主要有:   <strong><em>members</em></strong> | <strong><em>member_count</em></strong> | <strong><em>normal</em></strong> | <strong><em>join</em></strong> | <strong><em>leave</em></strong> | <strong><em>self</em></strong> | <strong><em>changename</em></strong> | <strong><em>history</em></strong>  | <strong><em>private</em></strong></li>
-<li>payload:消息的有效内容  </li>
-<li>send_time:该消息发送出来的时间  </li>
+<p style="margin: 0 0 1.1em; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">$xnest_id</em></strong>: 代表聊天室的唯一标识 <br/>
+<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">$nickname</em></strong>: 进入聊天室的昵称(进入一次后, 服务器会把该昵称写入到cookie, 下次不带昵称会默认是用cookie里的, 如果cookie和参数都没有, 服务器会默认使用一个随机的昵称)</p>
+
+<hr style="-moz-box-sizing: content-box; box-sizing: content-box; height: 0; margin-top: 21px; margin-bottom: 21px; border: 0; border-top: 1px solid rgba(102,128,153,0.1); margin: 2em 0; line-height: 1.6;"/>
+
+</div><div style="line-height: 1.6;">
+
+<h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">0x01 客户端(如js)连接:</h1>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">客户端通过websocket连接服务器 <br/>
+连接成功后:服务器会推送一些该聊天室的数据过来 <br/>
+格式为json文本,如下:  </p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{  <br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;{$sender_id}&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;{$xnest_id}&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;{$type}&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;{$payload}&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;{$time}&quot;</span>  <br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+<ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">from: 表示发送者的唯一id;  </li>
+<li style="line-height: 1.6;">xnest:表示该聊天室的唯一id  </li>
+<li style="line-height: 1.6;">type:表示该消息的类型, 主要有:   <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">members</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">member_count</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">normal</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">join</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">leave</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">self</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">changename</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">history</em></strong>  | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">private</em></strong>  | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">audio</em></strong> | <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">picture</em></strong> |</li>
+<li style="line-height: 1.6;">payload:消息的有效内容  </li>
+<li style="line-height: 1.6;">send_time:该消息发送出来的时间  </li>
 </ul>
-<h2>服务按如下次序推送消息过来:</h2>
-<h3>1.接收自己在该聊天室的唯一id</h3>
-<p>类型为:<strong><em>self</em></strong>, 有效内容为自己的id.<br />
-例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,  
-    &quot;type&quot;:&quot;self&quot;,  
-    &quot;payload&quot;:&quot;&lt;0.31891.2&gt;&quot;,  
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;  
-}
-</code></pre>
 
-<h3>2.接收该聊天室的成员数量</h3>
-<p>类型为:<strong><em>member_count</em></strong>,有效内容为1, 及表示当前成员数量为1<br />
-例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;member_count&quot;,
-    &quot;payload&quot;:1,
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
+<p style="margin: 0 0 1.1em; line-height: 1.6;"><em style="line-height: 1.6;">当type为audio或者picture时, 消息体payload实际为一个url</em></p></div><div style="line-height: 1.6;">
 
-<h3>3.接收成员列表</h3>
-<p>类型为:<strong><em>members</em></strong>, 内容为json数组, 包含当前所有聊天室成员的pid和nickname<br />
-例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;members&quot;,
-    &quot;payload&quot;:[{&quot;pid&quot;:&quot;&lt;0.31891.2&gt;&quot;,&quot;nickname&quot;:&quot;小明&quot;}],
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
+<h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;">服务按如下次序推送消息过来:</h2>
 
-<h3>4.接收该聊天室的历史记录, 目前只会保留一定数量的记录</h3>
-<p>类型为:<strong><em>history</em></strong>,有效内容为第一层的payload, 格式是个列表, 每条记录包含发送者id, 内容和时间<br />
-例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;history&quot;,
-    &quot;payload&quot;:[
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 12121435131197391&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;},
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 1111435131194487&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}, 
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 大大的1435131192974&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}, 
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot;爱上对方1435131191173&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}],
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
+</div><div style="line-height: 1.6;">
 
-<h1>0x02 连接建立成功后</h1>
-<p>连接保持期间, 如果有新加入的成员进来, 老成员离开 , 消息接收,  服务端都会推送一条消息给客户端,如下:  </p>
-<h3>1.接收新近成员消息(当有新成员加入聊天室时)</h3>
-<p>类型为:<strong><em>join</em></strong>, payload为该加入成员的昵称, 加入成员的id在from字段里.<br />
-例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;join&quot;,
-    &quot;payload&quot;:&quot;黑旋风李逵&quot;,
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">1.接收自己在该聊天室的唯一id</h3>
 
-<h3>2. 接收离开成员消息(当有其他成员离开聊天室时候)</h3>
-<p>类型为:<strong><em>leave</em></strong>,payload为固定的leave. 离开成员的id在from字段里.<br />
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">self</em></strong>, 有效内容为自己的id. <br/>
 例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31916.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;leave&quot;,
-    &quot;payload&quot;:&quot;leave&quot;,
-    &quot;send_time&quot;:&quot;2015-4-8 14:23:28&quot;
-}
-</code></pre>
 
-<h3>3. 普通消息的发送(这里就直接发送消息体就可以了, 没有格式.)</h3>
-<p>比如我发送了:  大家好!<br />
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;self&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,  <br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span>  <br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">2.接收该聊天室的成员数量</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">member_count</em></strong>,有效内容为1, 及表示当前成员数量为1 <br/>
+例子:</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;member_count&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #ae81ff;">1</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">3.接收成员列表</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">members</em></strong>, 内容为json数组, 包含当前所有聊天室成员的pid和nickname <br/>
+例子:</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;members&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;">[{&quot;<span style="line-height: 1.6; color: #f92672;">pid</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">nickname</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;小明&quot;</span></span>}]</span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">4.接收该聊天室的历史记录, 目前只会保留一定数量的记录</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">history</em></strong>,有效内容为第一层的payload, 格式是个列表, 每条记录包含发送者id, 内容和时间 , 还有该条消息的类型 <br/>
+例子:</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;history&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;">[<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; 12121435131197391&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;text&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>},<br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; http://meet.xpro.im/123242112312&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;audio&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}, <br/><span style="line-height: 1.6; display: none; color: #75715e;">8.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; 大大的1435131192974&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;text&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}, <br/><span style="line-height: 1.6; display: none; color: #75715e;">9.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;爱上对方1435131191173&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;text&quot;</span></span>, &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}]</span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">10.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">11.</span></span>}<br/></code></pre>
+
+<hr style="-moz-box-sizing: content-box; box-sizing: content-box; height: 0; margin-top: 21px; margin-bottom: 21px; border: 0; border-top: 1px solid rgba(102,128,153,0.1); margin: 2em 0; line-height: 1.6;"/></div><div style="line-height: 1.6;">
+
+<h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">0x02 连接建立成功后</h1>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">连接保持期间, 如果有新加入的成员进来, 老成员离开 , 消息接收,  服务端都会推送一条消息给客户端,如下:  </p>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">1.接收新近成员消息(当有新成员加入聊天室时)</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">join</em></strong>, payload为该加入成员的昵称, 加入成员的id在from字段里. <br/>
+例子:</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;join&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;黑旋风李逵&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">2. 接收离开成员消息(当有其他成员离开聊天室时候)</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">leave</em></strong>,payload为固定的leave. 离开成员的id在from字段里. <br/>
+例子:</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31916.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;leave&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;leave&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:23:28&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">3. 普通消息的发送(这里就直接发送消息体就可以了, 没有格式.)</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">比如我发送了:  大家好! <br/>
 js客户端可能是如下代码:</p>
-<pre><code>ws.send(&quot;大家好&quot;);
-</code></pre>
 
-<h3>4. 普通消息接收(及其他成员发送的消息)</h3>
-<p>类型为:<strong><em>normal</em></strong>, payload就是成员发送的消息.如上例,payload里就是大家好.from就是发送者的id.<br />
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>ws.<span style="line-height: 1.6; color: #e6db74;">send</span>(<span style="line-height: 1.6; color: #e6db74;">&quot;大家好&quot;</span>)<span style="line-height: 1.6; color: #75715e;">;</span><br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">4. 普通消息接收(及其他成员发送的消息)</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">normal</em></strong>, payload就是成员发送的消息.如上例,payload里就是大家好.from就是发送者的id. <br/>
 例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;normal&quot;,
-    &quot;payload&quot;:&quot;大家好&quot;,
-    &quot;send_time&quot;:
-    &quot;2015-4-8 14:25:30&quot;
-}
-</code></pre>
 
-<h3>5. 私聊消息的发送与接收</h3>
-<p>在一个聊天室里如果想单独发送信息给某位成员可以通过指令</p>
-<pre><code>@to:$pid|$msg  
-</code></pre>
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;normal&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;大家好&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span>    <span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:25:30&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">8.</span></span>}<br/></code></pre>
 
-<p>的格式发送
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">5. 私聊消息的发送与接收</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">在一个聊天室里如果想单独发送信息给某位成员可以通过指令</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span><span style="line-height: 1.6; color: #f8f8f2;">@to:</span>$pid|$msg  <br/></code></pre>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">的格式发送 <br/>
 比如:</p>
-<pre><code>@to:&lt;0.31891.2&gt;|今天你吃饭了吗?
-</code></pre>
 
-<p>对应的pid(&lt;0.31891.2&gt;)用户就会收到一条如下的<strong><em>private</em></strong>类型的消息:<br />
-类型为: <strong><em>private</em></strong>  </p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31890.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;private&quot;,
-    &quot;payload&quot;:&quot;今天你吃饭了吗?&quot;,
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span><span style="line-height: 1.6; color: #f8f8f2;">@to:</span>&lt;<span style="line-height: 1.6; color: #ae81ff;">0.31891</span>.<span style="line-height: 1.6; color: #ae81ff;">2</span>&gt;|今天你吃饭了吗?<br/></code></pre>
 
-<h3>6. 用户昵称改变昵称</h3>
-<p>用户可发送 <strong><em>@changename:新昵称</em></strong>  来修改自己的昵称.发送后服务器会广播消息到所有用户
-类型为:<strong><em>changename</em></strong>, payload成员修改后的昵称, 该成员的id在from字段里.<br />
+<p style="margin: 0 0 1.1em; line-height: 1.6;">对应的pid(&lt;0.31891.2&gt;)用户就会收到一条如下的<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">private</em></strong>类型的消息: <br/>
+类型为: <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">private</em></strong>  </p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31890.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;private&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;今天你吃饭了吗?&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre>
+
+</div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">6. 语音消息的发送与接收</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">语音消息是通过二进制的方式发送的, 在发送语音内容之前, 需要先发送一个字节(8位)的数字1,在紧接着发送语音</p>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">二进制的语音消息被服务端接收后会转换成文本类消息,  同时类型会变成<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">audio</em></strong>类型 <br/>
+有效的消息payload为一个url地址, 客户端可通过点击url等手段去播放语音消息</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31890.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;audio&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;http://meet.xpro.im:8080/14009e12d791e664fc0175aecb31d833/1452482123561863&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre></div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">7. 图片消息的发送与接收</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">图片消息也是通过二进制的方式发送的, 在发送图片内容之前, 需要先发送一个字节(8位)的数字2,在紧接着发送图片</p>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">二进制的图片消息被服务端接收后会转换成文本类消息,  同时类型会变成<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">picture</em></strong>类型 <br/>
+有效的消息payload为一个url地址, 客户端可通过再次发起一个http请求来显示图片</p>
+
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31890.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;picture&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;http://meet.xpro.im:8080/14009e12d791e664fc0175aecb31d833/1452482123561863&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre></div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">8. 用户昵称改变昵称</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">用户可发送 <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">@changename:新昵称</em></strong>  来修改自己的昵称.发送后服务器会广播消息到所有用户 <br/>
+类型为:<strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">changename</em></strong>, payload成员修改后的昵称, 该成员的id在from字段里. <br/>
 例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;changename&quot;,
-    &quot;payload&quot;:&quot;黑旋风李逵&quot;,
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
 
-<h3>7. 用户获取更多历史聊天记录</h3>
-<p>用户可发送 <strong><em>@history:$cursor</em></strong>  来获取聊天记录, 服务器收到后会以消息方式回应客户端以history为type的信息.<br />
-ps: <strong><em>$cursor</em></strong>为数字,从0开始, 比如发送: <strong><em>@history:0</em></strong>   即表示获取最近的聊天记录(通常游标cursor偏移量为50条);<br />
-在继续获取后面的记录, 可以发送 <strong><em>@history:1</em></strong>, 以此类推 <strong><em>@history:2</em></strong><br />
-类型为:history, payload为这次获取的聊天记录, 该成员的id在from字段里.<br />
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;changename&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;黑旋风李逵&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span></span>}<br/></code></pre></div><div style="line-height: 1.6;">
+
+<h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">9. 用户获取更多历史聊天记录</h3>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;">用户可发送 <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">@history:$cursor</em></strong>  来获取聊天记录, 服务器收到后会以消息方式回应客户端以history为type的信息. <br/>
+ps: <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">$cursor</em></strong>为数字,从0开始, 比如发送: <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">@history:0</em></strong>   即表示获取最近的聊天记录(通常游标cursor偏移量为50条); <br/>
+在继续获取后面的记录, 可以发送 <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">@history:1</em></strong>, 以此类推 <strong style="font-weight: bold; line-height: 1.6;"><em style="line-height: 1.6;">@history:2</em></strong> <br/>
+类型为:history, payload为这次获取的聊天记录, 该成员的id在from字段里. <br/>
 例子:</p>
-<pre><code>{
-    &quot;from&quot;:&quot;&lt;0.31891.2&gt;&quot;,
-    &quot;xnest&quot;:&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;,
-    &quot;type&quot;:&quot;history&quot;,
-    &quot;payload&quot;:[
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 12121435131197391&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;},
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 1111435131194487&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}, 
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot; 大大的1435131192974&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}, 
-        {&quot;from&quot;:&quot;&lt;0.1897.0&gt;&quot;,&quot;payload&quot;:&quot;爱上对方1435131191173&quot;,&quot;send_time&quot;:&quot;2015-06-24&quot;}],
-    &quot;send_time&quot;:&quot;2015-4-8 14:2:6&quot;
-}
-</code></pre>
 
-<h1>0x03 js示例</h1>
-<p><a href="http://meet.xpro.im/example.html">js样例</a></p>
+<pre style="font-family: 'Source Code Pro',monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: 'Source Code Pro',monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; display: none; color: #75715e;">1.</span>{<br/><span style="line-height: 1.6; display: none; color: #75715e;">2.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.31891.2&gt;&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">3.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">xnest</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;f45c6d7720375d90f660a7b7e3ae11bf&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">4.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">type</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;history&quot;</span></span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">5.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;">[<br/><span style="line-height: 1.6; display: none; color: #75715e;">6.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; 12121435131197391&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>},<br/><span style="line-height: 1.6; display: none; color: #75715e;">7.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; 1111435131194487&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}, <br/><span style="line-height: 1.6; display: none; color: #75715e;">8.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot; 大大的1435131192974&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}, <br/><span style="line-height: 1.6; display: none; color: #75715e;">9.</span>        {&quot;<span style="line-height: 1.6; color: #f92672;">from</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;&lt;0.1897.0&gt;&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">payload</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;爱上对方1435131191173&quot;</span></span>,&quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-06-24&quot;</span></span>}]</span>,<br/><span style="line-height: 1.6; display: none; color: #75715e;">10.</span>    &quot;<span style="line-height: 1.6; color: #f92672;">send_time</span>&quot;:<span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #e6db74;">&quot;2015-4-8 14:2:6&quot;</span><br/><span style="line-height: 1.6; display: none; color: #75715e;">11.</span></span>}<br/></code></pre>
 
-</body>
-</html>
-<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
+<hr style="-moz-box-sizing: content-box; box-sizing: content-box; height: 0; margin-top: 21px; margin-bottom: 21px; border: 0; border-top: 1px solid rgba(102,128,153,0.1); margin: 2em 0; line-height: 1.6;"/></div><div style="line-height: 1.6;">
+
+<h1 style="font-size: 2.6em; margin: 1.2em 0 .6em 0; font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; text-align: start;">0x03 js示例</h1>
+
+<p style="margin: 0 0 1.1em; line-height: 1.6;"><a href="http://meet.xpro.im/example.html" style="background: transparent; color: #1980e6; text-decoration: none;" target="_blank">js样例</a></p></div><div style="line-height: 1.6;"></div></div><center style="display:none">%23%200x00%20%u540D%u8BCD%u89E3%u91CA%3A%20%20%0A%0A@%28XPro%29%0A%0A***%7B%7D***%u91CC%u7684%u8868%u793A%u53D8%u91CF%20%20%0A***xnest***%u8868%u793A%u4E00%u4E2A%u804A%u5929%u5BA4%20%20%0A***xnest_id***%u8868%u793A%u8BE5%u804A%u5929%u5BA4%u7684id.%28%u7528%u6237%u53EF%u4EE5%u81EA%u5DF1%u53D6%2C%20%u6700%u597D%u4E0D%u8D85%u8FC732%u4E2A%u5B57%u7B26%29%20%20%0A%u8FDE%u63A5%u5730%u5740%3A%20%20%0A%3E%20ws%3A//meet.xpro.im%3A8080/xgate/websocket/%7B%5C%24xnest_id%7D%3Fnickname%3D%7B%24nickname%7D%0A%0A***%24xnest_id***%3A%20%u4EE3%u8868%u804A%u5929%u5BA4%u7684%u552F%u4E00%u6807%u8BC6%0A***%24nickname***%3A%20%u8FDB%u5165%u804A%u5929%u5BA4%u7684%u6635%u79F0%28%u8FDB%u5165%u4E00%u6B21%u540E%2C%20%u670D%u52A1%u5668%u4F1A%u628A%u8BE5%u6635%u79F0%u5199%u5165%u5230cookie%2C%20%u4E0B%u6B21%u4E0D%u5E26%u6635%u79F0%u4F1A%u9ED8%u8BA4%u662F%u7528cookie%u91CC%u7684%2C%20%u5982%u679Ccookie%u548C%u53C2%u6570%u90FD%u6CA1%u6709%2C%20%u670D%u52A1%u5668%u4F1A%u9ED8%u8BA4%u4F7F%u7528%u4E00%u4E2A%u968F%u673A%u7684%u6635%u79F0%29%0A%0A%0A----------%0A%0A%0A%23%200x01%20%u5BA2%u6237%u7AEF%28%u5982js%29%u8FDE%u63A5%3A%0A%u5BA2%u6237%u7AEF%u901A%u8FC7websocket%u8FDE%u63A5%u670D%u52A1%u5668%20%20%0A%u8FDE%u63A5%u6210%u529F%u540E%3A%u670D%u52A1%u5668%u4F1A%u63A8%u9001%u4E00%u4E9B%u8BE5%u804A%u5929%u5BA4%u7684%u6570%u636E%u8FC7%u6765%20%20%0A%u683C%u5F0F%u4E3Ajson%u6587%u672C%2C%u5982%u4E0B%3A%20%20%0A%0A%09%7B%20%20%0A%09%09%22from%22%3A%22%7B%24sender_id%7D%22%2C%20%20%0A%20%20%20%20%09%22xnest%22%3A%22%7B%24xnest_id%7D%22%2C%20%20%0A%20%20%20%20%09%22type%22%3A%22%7B%24type%7D%22%2C%20%20%0A%09%09%22payload%22%3A%22%7B%24payload%7D%22%2C%20%20%0A%20%20%20%20%09%22send_time%22%3A%22%7B%24time%7D%22%20%20%0A%09%7D%0A%20%20%20%20%0A%0A*%20from%3A%20%u8868%u793A%u53D1%u9001%u8005%u7684%u552F%u4E00id%3B%20%20%0A*%20xnest%3A%u8868%u793A%u8BE5%u804A%u5929%u5BA4%u7684%u552F%u4E00id%20%20%0A*%20type%3A%u8868%u793A%u8BE5%u6D88%u606F%u7684%u7C7B%u578B%2C%20%u4E3B%u8981%u6709%3A%20%20%20***members***%20%7C%20***member_count***%20%7C%20***normal***%20%7C%20***join***%20%7C%20***leave***%20%7C%20***self***%20%7C%20***changename***%20%7C%20***history***%20%20%7C%20***private***%20%20%7C%20***audio***%20%7C%20***picture***%20%7C%0A*%20payload%3A%u6D88%u606F%u7684%u6709%u6548%u5185%u5BB9%20%20%0A*%20send_time%3A%u8BE5%u6D88%u606F%u53D1%u9001%u51FA%u6765%u7684%u65F6%u95F4%20%20%0A%0A*%u5F53type%u4E3Aaudio%u6216%u8005picture%u65F6%2C%20%u6D88%u606F%u4F53payload%u5B9E%u9645%u4E3A%u4E00%u4E2Aurl*%0A%0A%23%23%20%u670D%u52A1%u6309%u5982%u4E0B%u6B21%u5E8F%u63A8%u9001%u6D88%u606F%u8FC7%u6765%3A%0A%23%23%23%201.%u63A5%u6536%u81EA%u5DF1%u5728%u8BE5%u804A%u5929%u5BA4%u7684%u552F%u4E00id%20%20%0A%u7C7B%u578B%u4E3A%3A***self***%2C%20%u6709%u6548%u5185%u5BB9%u4E3A%u81EA%u5DF1%u7684id.%20%20%0A%u4F8B%u5B50%3A%0A%0A%20%20%20%20%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%20%20%0A%20%20%20%20%09%22type%22%3A%22self%22%2C%20%20%0A%20%20%20%20%09%22payload%22%3A%22%3C0.31891.2%3E%22%2C%20%20%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%20%20%0A%20%20%20%20%7D%0A%0A%23%23%23%202.%u63A5%u6536%u8BE5%u804A%u5929%u5BA4%u7684%u6210%u5458%u6570%u91CF%0A%u7C7B%u578B%u4E3A%3A***member_count***%2C%u6709%u6548%u5185%u5BB9%u4E3A1%2C%20%u53CA%u8868%u793A%u5F53%u524D%u6210%u5458%u6570%u91CF%u4E3A1%20%20%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%09%22type%22%3A%22member_count%22%2C%0A%20%20%20%20%09%22payload%22%3A1%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%23%23%23%203.%u63A5%u6536%u6210%u5458%u5217%u8868%0A%u7C7B%u578B%u4E3A%3A***members***%2C%20%u5185%u5BB9%u4E3Ajson%u6570%u7EC4%2C%20%u5305%u542B%u5F53%u524D%u6240%u6709%u804A%u5929%u5BA4%u6210%u5458%u7684pid%u548Cnickname%20%20%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%09%22type%22%3A%22members%22%2C%0A%20%20%20%20%09%22payload%22%3A%5B%7B%22pid%22%3A%22%3C0.31891.2%3E%22%2C%22nickname%22%3A%22%u5C0F%u660E%22%7D%5D%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%23%23%23%204.%u63A5%u6536%u8BE5%u804A%u5929%u5BA4%u7684%u5386%u53F2%u8BB0%u5F55%2C%20%u76EE%u524D%u53EA%u4F1A%u4FDD%u7559%u4E00%u5B9A%u6570%u91CF%u7684%u8BB0%u5F55%0A%u7C7B%u578B%u4E3A%3A***history***%2C%u6709%u6548%u5185%u5BB9%u4E3A%u7B2C%u4E00%u5C42%u7684payload%2C%20%u683C%u5F0F%u662F%u4E2A%u5217%u8868%2C%20%u6BCF%u6761%u8BB0%u5F55%u5305%u542B%u53D1%u9001%u8005id%2C%20%u5185%u5BB9%u548C%u65F6%u95F4%20%2C%20%u8FD8%u6709%u8BE5%u6761%u6D88%u606F%u7684%u7C7B%u578B%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%20%20%20%20%09%22type%22%3A%22history%22%2C%0A%20%20%20%20%09%22payload%22%3A%5B%0A%09%09%09%7B%22from%22%3A%22%3C0.1897.0%3E%22%2C%22payload%22%3A%22%2012121435131197391%22%2C%20%22type%22%3A%22text%22%2C%20%22send_time%22%3A%222015-06-24%22%7D%2C%0A%09%09%09%7B%22from%22%3A%22%3C0.1897.0%3E%22%2C%22payload%22%3A%22%20http%3A//meet.xpro.im/123242112312%22%2C%20%22type%22%3A%22audio%22%2C%20%22send_time%22%3A%222015-06-24%22%7D%2C%20%0A%09%09%09%7B%22from%22%3A%22%3C0.1897.0%3E%22%2C%22payload%22%3A%22%20%u5927%u5927%u76841435131192974%22%2C%20%22type%22%3A%22text%22%2C%20%22send_time%22%3A%222015-06-24%22%7D%2C%20%0A%09%09%09%7B%22from%22%3A%22%3C0.1897.0%3E%22%2C%22payload%22%3A%22%u7231%u4E0A%u5BF9%u65B91435131191173%22%2C%20%22type%22%3A%22text%22%2C%20%22send_time%22%3A%222015-06-24%22%7D%5D%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%0A----------%0A%0A%0A%23%200x02%20%u8FDE%u63A5%u5EFA%u7ACB%u6210%u529F%u540E%0A%u8FDE%u63A5%u4FDD%u6301%u671F%u95F4%2C%20%u5982%u679C%u6709%u65B0%u52A0%u5165%u7684%u6210%u5458%u8FDB%u6765%2C%20%u8001%u6210%u5458%u79BB%u5F00%20%2C%20%u6D88%u606F%u63A5%u6536%2C%20%20%u670D%u52A1%u7AEF%u90FD%u4F1A%u63A8%u9001%u4E00%u6761%u6D88%u606F%u7ED9%u5BA2%u6237%u7AEF%2C%u5982%u4E0B%3A%20%20%0A%23%23%23%201.%u63A5%u6536%u65B0%u8FD1%u6210%u5458%u6D88%u606F%28%u5F53%u6709%u65B0%u6210%u5458%u52A0%u5165%u804A%u5929%u5BA4%u65F6%29%20%20%0A%u7C7B%u578B%u4E3A%3A***join***%2C%20payload%u4E3A%u8BE5%u52A0%u5165%u6210%u5458%u7684%u6635%u79F0%2C%20%u52A0%u5165%u6210%u5458%u7684id%u5728from%u5B57%u6BB5%u91CC.%20%20%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%20%20%20%20%09%22type%22%3A%22join%22%2C%0A%20%20%20%20%09%22payload%22%3A%22%u9ED1%u65CB%u98CE%u674E%u9035%22%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%23%23%23%202.%20%u63A5%u6536%u79BB%u5F00%u6210%u5458%u6D88%u606F%28%u5F53%u6709%u5176%u4ED6%u6210%u5458%u79BB%u5F00%u804A%u5929%u5BA4%u65F6%u5019%29%0A%u7C7B%u578B%u4E3A%3A***leave***%2Cpayload%u4E3A%u56FA%u5B9A%u7684leave.%20%u79BB%u5F00%u6210%u5458%u7684id%u5728from%u5B57%u6BB5%u91CC.%20%20%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31916.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%20%20%20%20%09%22type%22%3A%22leave%22%2C%0A%20%20%20%20%09%22payload%22%3A%22leave%22%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A23%3A28%22%0A%09%7D%0A%0A%0A%0A%23%23%23%203.%20%u666E%u901A%u6D88%u606F%u7684%u53D1%u9001%28%u8FD9%u91CC%u5C31%u76F4%u63A5%u53D1%u9001%u6D88%u606F%u4F53%u5C31%u53EF%u4EE5%u4E86%2C%20%u6CA1%u6709%u683C%u5F0F.%29%0A%u6BD4%u5982%u6211%u53D1%u9001%u4E86%3A%20%20%u5927%u5BB6%u597D%21%20%20%0Ajs%u5BA2%u6237%u7AEF%u53EF%u80FD%u662F%u5982%u4E0B%u4EE3%u7801%3A%0A%20%20%0A%09ws.send%28%22%u5927%u5BB6%u597D%22%29%3B%0A%0A%0A%23%23%23%204.%20%u666E%u901A%u6D88%u606F%u63A5%u6536%28%u53CA%u5176%u4ED6%u6210%u5458%u53D1%u9001%u7684%u6D88%u606F%29%0A%u7C7B%u578B%u4E3A%3A***normal***%2C%20payload%u5C31%u662F%u6210%u5458%u53D1%u9001%u7684%u6D88%u606F.%u5982%u4E0A%u4F8B%2Cpayload%u91CC%u5C31%u662F%u5927%u5BB6%u597D.from%u5C31%u662F%u53D1%u9001%u8005%u7684id.%20%20%0A%u4F8B%u5B50%3A%0A%0A%09%7B%0A%09%20%20%20%20%22from%22%3A%22%3C0.31891.2%3E%22%2C%0A%09%20%20%20%20%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%20%20%20%20%22type%22%3A%22normal%22%2C%0A%09%20%20%20%20%22payload%22%3A%22%u5927%u5BB6%u597D%22%2C%0A%09%20%20%20%20%22send_time%22%3A%0A%09%20%20%20%20%222015-4-8%2014%3A25%3A30%22%0A%09%7D%0A%0A%23%23%23%205.%20%u79C1%u804A%u6D88%u606F%u7684%u53D1%u9001%u4E0E%u63A5%u6536%0A%u5728%u4E00%u4E2A%u804A%u5929%u5BA4%u91CC%u5982%u679C%u60F3%u5355%u72EC%u53D1%u9001%u4FE1%u606F%u7ED9%u67D0%u4F4D%u6210%u5458%u53EF%u4EE5%u901A%u8FC7%u6307%u4EE4%0A%0A%09@to%3A%24pid%7C%24msg%20%20%0A%u7684%u683C%u5F0F%u53D1%u9001%0A%u6BD4%u5982%3A%0A%0A%09@to%3A%3C0.31891.2%3E%7C%u4ECA%u5929%u4F60%u5403%u996D%u4E86%u5417%3F%0A%0A%u5BF9%u5E94%u7684pid%28%3C0.31891.2%3E%29%u7528%u6237%u5C31%u4F1A%u6536%u5230%u4E00%u6761%u5982%u4E0B%u7684***private***%u7C7B%u578B%u7684%u6D88%u606F%3A%20%20%0A%u7C7B%u578B%u4E3A%3A%20***private***%20%20%0A%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31890.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%09%22type%22%3A%22private%22%2C%0A%20%20%20%20%09%22payload%22%3A%22%u4ECA%u5929%u4F60%u5403%u996D%u4E86%u5417%3F%22%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%0A%23%23%23%206.%20%u8BED%u97F3%u6D88%u606F%u7684%u53D1%u9001%u4E0E%u63A5%u6536%0A%u8BED%u97F3%u6D88%u606F%u662F%u901A%u8FC7%u4E8C%u8FDB%u5236%u7684%u65B9%u5F0F%u53D1%u9001%u7684%2C%20%u5728%u53D1%u9001%u8BED%u97F3%u5185%u5BB9%u4E4B%u524D%2C%20%u9700%u8981%u5148%u53D1%u9001%u4E00%u4E2A%u5B57%u8282%288%u4F4D%29%u7684%u6570%u5B571%2C%u5728%u7D27%u63A5%u7740%u53D1%u9001%u8BED%u97F3%0A%0A%0A%0A%u4E8C%u8FDB%u5236%u7684%u8BED%u97F3%u6D88%u606F%u88AB%u670D%u52A1%u7AEF%u63A5%u6536%u540E%u4F1A%u8F6C%u6362%u6210%u6587%u672C%u7C7B%u6D88%u606F%2C%20%20%u540C%u65F6%u7C7B%u578B%u4F1A%u53D8%u6210***audio***%u7C7B%u578B%0A%u6709%u6548%u7684%u6D88%u606Fpayload%u4E3A%u4E00%u4E2Aurl%u5730%u5740%2C%20%u5BA2%u6237%u7AEF%u53EF%u901A%u8FC7%u70B9%u51FBurl%u7B49%u624B%u6BB5%u53BB%u64AD%u653E%u8BED%u97F3%u6D88%u606F%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31890.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%09%22type%22%3A%22audio%22%2C%0A%20%20%20%20%09%22payload%22%3A%22http%3A//meet.xpro.im%3A8080/14009e12d791e664fc0175aecb31d833/1452482123561863%22%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%0A%23%23%23%207.%20%u56FE%u7247%u6D88%u606F%u7684%u53D1%u9001%u4E0E%u63A5%u6536%0A%u56FE%u7247%u6D88%u606F%u4E5F%u662F%u901A%u8FC7%u4E8C%u8FDB%u5236%u7684%u65B9%u5F0F%u53D1%u9001%u7684%2C%20%u5728%u53D1%u9001%u56FE%u7247%u5185%u5BB9%u4E4B%u524D%2C%20%u9700%u8981%u5148%u53D1%u9001%u4E00%u4E2A%u5B57%u8282%288%u4F4D%29%u7684%u6570%u5B572%2C%u5728%u7D27%u63A5%u7740%u53D1%u9001%u56FE%u7247%0A%0A%0A%0A%u4E8C%u8FDB%u5236%u7684%u56FE%u7247%u6D88%u606F%u88AB%u670D%u52A1%u7AEF%u63A5%u6536%u540E%u4F1A%u8F6C%u6362%u6210%u6587%u672C%u7C7B%u6D88%u606F%2C%20%20%u540C%u65F6%u7C7B%u578B%u4F1A%u53D8%u6210***picture***%u7C7B%u578B%0A%u6709%u6548%u7684%u6D88%u606Fpayload%u4E3A%u4E00%u4E2Aurl%u5730%u5740%2C%20%u5BA2%u6237%u7AEF%u53EF%u901A%u8FC7%u518D%u6B21%u53D1%u8D77%u4E00%u4E2Ahttp%u8BF7%u6C42%u6765%u663E%u793A%u56FE%u7247%0A%0A%09%7B%0A%20%20%20%20%09%22from%22%3A%22%3C0.31890.2%3E%22%2C%0A%20%20%20%20%09%22xnest%22%3A%22f45c6d7720375d90f660a7b7e3ae11bf%22%2C%0A%09%09%22type%22%3A%22picture%22%2C%0A%20%20%20%20%09%22payload%22%3A%22http%3A//meet.xpro.im%3A8080/14009e12d791e664fc0175aecb31d833/1452482123561863%22%2C%0A%20%20%20%20%09%22send_time%22%3A%222015-4-8%2014%3A2%3A6%22%0A%09%7D%0A%0A%23%23%23%208.%20%u7528%u6237%u6635%u79F0%u6539%u53D8%u6635%u79F
